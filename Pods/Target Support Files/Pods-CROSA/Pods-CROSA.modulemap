@@ -1,0 +1,6 @@
+framework module Pods_CROSA {
+  umbrella header "Pods-CROSA-umbrella.h"
+
+  export *
+  module * { export * }
+}
