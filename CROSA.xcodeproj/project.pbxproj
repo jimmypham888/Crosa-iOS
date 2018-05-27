@@ -54,6 +54,9 @@
 		6CA8DBEE20BAC23000A82DA5 /* DashBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBEC20BAC23000A82DA5 /* DashBoardViewController.xib */; };
 		6CA8DBF220BAC7F800A82DA5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBF020BAC7F800A82DA5 /* ContactTableViewCell.swift */; };
 		6CA8DBF320BAC7F800A82DA5 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBF120BAC7F800A82DA5 /* ContactTableViewCell.xib */; };
+		6CA8DBF620BADD6700A82DA5 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBF420BADD6700A82DA5 /* ContactDetailViewController.swift */; };
+		6CA8DBF720BADD6700A82DA5 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBF520BADD6700A82DA5 /* ContactDetailViewController.xib */; };
+		6CA8DBFB20BAE8CF00A82DA5 /* StringeeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBFA20BAE8CF00A82DA5 /* StringeeManager.swift */; };
 		6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */; };
 		6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB220B65A340026BC59 /* Assets.xcassets */; };
 		6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */; };
@@ -108,6 +111,9 @@
 		6CA8DBEC20BAC23000A82DA5 /* DashBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardViewController.xib; sourceTree = "<group>"; };
 		6CA8DBF020BAC7F800A82DA5 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		6CA8DBF120BAC7F800A82DA5 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		6CA8DBF420BADD6700A82DA5 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
+		6CA8DBF520BADD6700A82DA5 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
+		6CA8DBFA20BAE8CF00A82DA5 /* StringeeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringeeManager.swift; sourceTree = "<group>"; };
 		6CE0FFA820B65A320026BC59 /* CROSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CROSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CE0FFB220B65A340026BC59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 		6C479CB420B70A60001B2B2B /* Call */ = {
 			isa = PBXGroup;
 			children = (
+				6CA8DBF920BAE8BF00A82DA5 /* Stringee */,
 				6C8B46B320B9A9D50098EDBE /* Audio */,
 				6C8B46B220B9A9560098EDBE /* CallManagement */,
 			);
@@ -201,6 +208,7 @@
 				6CA8DBEA20BAC1FB00A82DA5 /* Dashboard */,
 				6CA8DBDF20BAB60E00A82DA5 /* LeftMenu */,
 				6CA8DBD420BAACF200A82DA5 /* ContactList */,
+				6CA8DBF820BADD6D00A82DA5 /* ContactDetail */,
 				6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */,
 			);
 			path = UI;
@@ -334,6 +342,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		6CA8DBF820BADD6D00A82DA5 /* ContactDetail */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBF420BADD6700A82DA5 /* ContactDetailViewController.swift */,
+				6CA8DBF520BADD6700A82DA5 /* ContactDetailViewController.xib */,
+			);
+			path = ContactDetail;
+			sourceTree = "<group>";
+		};
+		6CA8DBF920BAE8BF00A82DA5 /* Stringee */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBFA20BAE8CF00A82DA5 /* StringeeManager.swift */,
+			);
+			path = Stringee;
+			sourceTree = "<group>";
+		};
 		6CE0FF9F20B65A320026BC59 = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +479,7 @@
 				6CA8DBA920BAA2AB00A82DA5 /* EnvConfiguration.plist in Resources */,
 				6C353F9720B921580088E214 /* CallKitDemoViewController.xib in Resources */,
 				6CA8DBE320BAB64400A82DA5 /* LeftMenuViewController.xib in Resources */,
+				6CA8DBF720BADD6700A82DA5 /* ContactDetailViewController.xib in Resources */,
 				6C7B635120B6939D008821F3 /* StringeeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,9 +582,11 @@
 				6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */,
 				6CA8DBE720BAB69900A82DA5 /* BaseCollectionViewCell.swift in Sources */,
 				6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */,
+				6CA8DBFB20BAE8CF00A82DA5 /* StringeeManager.swift in Sources */,
 				6CA8DBBD20BAA59200A82DA5 /* UIImageViewExtensions.swift in Sources */,
 				6CA8DBBF20BAA5B100A82DA5 /* UIViewExtensions.swift in Sources */,
 				6C8B46B520B9A9E40098EDBE /* Audio.swift in Sources */,
+				6CA8DBF620BADD6700A82DA5 /* ContactDetailViewController.swift in Sources */,
 				6CA8DBED20BAC23000A82DA5 /* DashBoardViewController.swift in Sources */,
 				6CA8DBE520BAB67E00A82DA5 /* BaseTableViewCell.swift in Sources */,
 				6CA8DBC320BAA5E800A82DA5 /* InitializeExtensions.swift in Sources */,

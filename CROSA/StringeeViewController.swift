@@ -32,7 +32,7 @@ class StringeeViewController: UIViewController {
     }
 
     @IBAction func call(_ sender: UIButton) {
-        let stringeeCall = StringeeCall(stringeeClient: stringeeClient, from: "84901701061", to: "841678905879‬")
+        let stringeeCall = StringeeCall(stringeeClient: stringeeClient, from: "pr", to: "841678905879‬")
         stringeeCall?.delegate = self
         stringeeCall?.make(completionHandler: { (status, code, message) in
             print("Make call result: \(code.description), message: \(message?.description ?? "")")

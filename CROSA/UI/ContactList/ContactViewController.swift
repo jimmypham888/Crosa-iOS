@@ -80,8 +80,8 @@ class ContactViewController: BaseViewController {
         }
     }
     
-    private func navigateToContactDetail(id: Int) {
-        
+    private func navigateContactDetail(contact: Contact) {
+        navigationController?.pushViewController(ContactDetailViewController(withContact: contact), animated: true)
     }
 
 }
@@ -94,7 +94,7 @@ extension ContactViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(type: ContactTableViewCell.self, for: indexPath)
         let contact = filterContacts[indexPath.row]
-        cell.updateWithContact(contact, index: indexPath.row + 1) { self.navigateToContactDetail(id: contact.id) }
+        cell.updateWithContact(contact, index: indexPath.row + 1) { self.navigateContactDetail(contact: contact) }
         return cell
     }
 }
