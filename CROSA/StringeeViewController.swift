@@ -13,6 +13,8 @@ class StringeeViewController: UIViewController {
     private var stringeeClient: StringeeClient?
     private let accessToken: String
     @IBOutlet weak var numberField: UITextField!
+    private let callManager = CallManager()
+    private let providerDelegate = ProviderDelegate()
     
     init() {
         accessToken = ACCESS_TOKEN
@@ -30,10 +32,45 @@ class StringeeViewController: UIViewController {
     }
 
     @IBAction func call(_ sender: UIButton) {
-        let stringeeCall = StringeeCall(stringeeClient: stringeeClient, from: "84901701061", to: numberField.text)
+        let stringeeCall = StringeeCall(stringeeClient: stringeeClient, from: "84901701061", to: "841678905879‬")
+        stringeeCall?.delegate = self
         stringeeCall?.make(completionHandler: { (status, code, message) in
             print("Make call result: \(code.description), message: \(message?.description ?? "")")
         })
+    }
+}
+
+extension StringeeViewController: StringeeCallDelegate {
+    func didChangeSignalingState(_ stringeeCall: StringeeCall!, signalingState: SignalingState, reason: String!, sipCode: Int32, sipReason: String!) {
+        switch signalingState {
+        case .calling:
+            callManager.startCall(handle: "84905679489")
+        case .ringing, .answered: break
+        case .busy:
+            callManager.end()
+        case .ended:
+            callManager.end()
+        }
+    }
+    
+    func didChangeMediaState(_ stringeeCall: StringeeCall!, mediaState: MediaState) {
+        print(mediaState)
+    }
+    
+    func didReceiveLocalStream(_ stringeeCall: StringeeCall!) {
+        print("didReceiveLocalStream")
+    }
+    
+    func didReceiveRemoteStream(_ stringeeCall: StringeeCall!) {
+        print("didReceiveRemoteStream")
+    }
+    
+    func didReceiveDtmfDigit(_ stringeeCall: StringeeCall!, callDTMF: CallDTMF) {
+        print("didReceiveDtmfDigit")
+    }
+    
+    func didHandle(onAnotherDevice stringeeCall: StringeeCall!, signalingState: SignalingState, reason: String!, sipCode: Int32, sipReason: String!) {
+        print("didHandle on another device")
     }
 }
 

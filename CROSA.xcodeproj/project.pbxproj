@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4496933FEA32F37B9DEA892B /* Pods_CROSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E64DD9BC30F749CE23856D1 /* Pods_CROSA.framework */; };
+		6C1424C520B9AC4F0055E5A3 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1424C420B9AC4F0055E5A3 /* Call.swift */; };
+		6C353F9620B921580088E214 /* CallKitDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C353F9420B921570088E214 /* CallKitDemoViewController.swift */; };
+		6C353F9720B921580088E214 /* CallKitDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C353F9520B921570088E214 /* CallKitDemoViewController.xib */; };
 		6C479CB620B70A83001B2B2B /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C479CB520B70A83001B2B2B /* ProviderDelegate.swift */; };
 		6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7B634E20B6939D008821F3 /* StringeeViewController.swift */; };
 		6C7B635120B6939D008821F3 /* StringeeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C7B634F20B6939D008821F3 /* StringeeViewController.xib */; };
@@ -18,6 +21,8 @@
 		6C7B635B20B69406008821F3 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7B635A20B69406008821F3 /* libicucore.tbd */; };
 		6C7B635D20B6940E008821F3 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7B635C20B6940E008821F3 /* libstdc++.tbd */; };
 		6C7B635F20B696C4008821F3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7B635E20B696C4008821F3 /* Constant.swift */; };
+		6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B46B020B9A7C10098EDBE /* CallManager.swift */; };
+		6C8B46B520B9A9E40098EDBE /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B46B420B9A9E40098EDBE /* Audio.swift */; };
 		6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */; };
 		6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB220B65A340026BC59 /* Assets.xcassets */; };
 		6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */; };
@@ -25,6 +30,9 @@
 
 /* Begin PBXFileReference section */
 		3E64DD9BC30F749CE23856D1 /* Pods_CROSA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CROSA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C1424C420B9AC4F0055E5A3 /* Call.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
+		6C353F9420B921570088E214 /* CallKitDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitDemoViewController.swift; sourceTree = "<group>"; };
+		6C353F9520B921570088E214 /* CallKitDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CallKitDemoViewController.xib; sourceTree = "<group>"; };
 		6C479CB520B70A83001B2B2B /* ProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
 		6C7B634E20B6939D008821F3 /* StringeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringeeViewController.swift; sourceTree = "<group>"; };
 		6C7B634F20B6939D008821F3 /* StringeeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringeeViewController.xib; sourceTree = "<group>"; };
@@ -35,6 +43,8 @@
 		6C7B635A20B69406008821F3 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		6C7B635C20B6940E008821F3 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		6C7B635E20B696C4008821F3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		6C8B46B020B9A7C10098EDBE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
+		6C8B46B420B9A9E40098EDBE /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		6C9A51DA20B65FD5006C5B73 /* CROSA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CROSA-Bridging-Header.h"; sourceTree = "<group>"; };
 		6CE0FFA820B65A320026BC59 /* CROSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CROSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,12 +87,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6C479CB420B70A60001B2B2B /* CallKit */ = {
+		6C479CB420B70A60001B2B2B /* Call */ = {
 			isa = PBXGroup;
 			children = (
+				6C8B46B320B9A9D50098EDBE /* Audio */,
+				6C8B46B220B9A9560098EDBE /* CallManagement */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
+		6C8B46B220B9A9560098EDBE /* CallManagement */ = {
+			isa = PBXGroup;
+			children = (
+				6C8B46B020B9A7C10098EDBE /* CallManager.swift */,
+				6C1424C420B9AC4F0055E5A3 /* Call.swift */,
+			);
+			path = CallManagement;
+			sourceTree = "<group>";
+		};
+		6C8B46B320B9A9D50098EDBE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6C8B46B420B9A9E40098EDBE /* Audio.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		6C8B46B620B9A9FC0098EDBE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */,
 				6C479CB520B70A83001B2B2B /* ProviderDelegate.swift */,
 			);
-			path = CallKit;
+			path = App;
+			sourceTree = "<group>";
+		};
+		6C8B46B820B9AA150098EDBE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C9A51DA20B65FD5006C5B73 /* CROSA-Bridging-Header.h */,
+				6CE0FFB720B65A340026BC59 /* Info.plist */,
+				6CE0FFB220B65A340026BC59 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C8B46B920B9AA360098EDBE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		6CE0FF9F20B65A320026BC59 = {
@@ -106,15 +161,15 @@
 		6CE0FFAA20B65A320026BC59 /* CROSA */ = {
 			isa = PBXGroup;
 			children = (
-				6C479CB420B70A60001B2B2B /* CallKit */,
-				6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */,
-				6CE0FFB220B65A340026BC59 /* Assets.xcassets */,
-				6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */,
-				6CE0FFB720B65A340026BC59 /* Info.plist */,
-				6C9A51DA20B65FD5006C5B73 /* CROSA-Bridging-Header.h */,
+				6C8B46B620B9A9FC0098EDBE /* App */,
+				6C479CB420B70A60001B2B2B /* Call */,
+				6C8B46B820B9AA150098EDBE /* Supporting Files */,
+				6C8B46B920B9AA360098EDBE /* UI */,
 				6C7B634E20B6939D008821F3 /* StringeeViewController.swift */,
 				6C7B634F20B6939D008821F3 /* StringeeViewController.xib */,
 				6C7B635E20B696C4008821F3 /* Constant.swift */,
+				6C353F9420B921570088E214 /* CallKitDemoViewController.swift */,
+				6C353F9520B921570088E214 /* CallKitDemoViewController.xib */,
 			);
 			path = CROSA;
 			sourceTree = "<group>";
@@ -162,6 +217,11 @@
 					6CE0FFA720B65A320026BC59 = {
 						CreatedOnToolsVersion = 9.3.1;
 						LastSwiftMigration = 0930;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -190,6 +250,7 @@
 			files = (
 				6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */,
 				6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */,
+				6C353F9720B921580088E214 /* CallKitDemoViewController.xib in Resources */,
 				6C7B635120B6939D008821F3 /* StringeeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,10 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C353F9620B921580088E214 /* CallKitDemoViewController.swift in Sources */,
+				6C1424C520B9AC4F0055E5A3 /* Call.swift in Sources */,
 				6C7B635F20B696C4008821F3 /* Constant.swift in Sources */,
 				6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */,
+				6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */,
 				6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */,
 				6C479CB620B70A83001B2B2B /* ProviderDelegate.swift in Sources */,
+				6C8B46B520B9A9E40098EDBE /* Audio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,18 +428,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pham Anh (8AC84J5A86)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q8WX82C9SS;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = CROSA/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CROSA/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JimmyPham.CROSA;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.topica.crosa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CROSA/CROSA-Bridging-Header.h";
+				PROVISIONING_PROFILE = "24999460-1050-48e4-a67b-8d6e7f3c550e";
+				PROVISIONING_PROFILE_SPECIFIER = "CROSA Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "CROSA/Supporting Files/CROSA-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -387,18 +455,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TOPICA ENGLISH EDUCATION CORPORATION (Q8WX82C9SS)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q8WX82C9SS;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = CROSA/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/CROSA/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JimmyPham.CROSA;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.topica.crosa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CROSA/CROSA-Bridging-Header.h";
+				PROVISIONING_PROFILE = "f324b7ad-1824-49d1-a6e3-10c6c87482c9";
+				PROVISIONING_PROFILE_SPECIFIER = "Crosa Adhoc";
+				SWIFT_OBJC_BRIDGING_HEADER = "CROSA/Supporting Files/CROSA-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

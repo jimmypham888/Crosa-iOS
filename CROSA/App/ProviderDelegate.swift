@@ -20,37 +20,31 @@ class ProviderDelegate: NSObject {
     }
     
     static var providerConfiguration: CXProviderConfiguration {
-        let providerConfiguration = CXProviderConfiguration(localizedName: "Hotline")
+        let providerConfiguration = CXProviderConfiguration(localizedName: "Crosa")
         
-        providerConfiguration.supportsVideo = true
         providerConfiguration.maximumCallsPerCallGroup = 1
         providerConfiguration.supportedHandleTypes = [.phoneNumber]
         
         return providerConfiguration
     }
-    
-    func reportIncomingCall(uuid: UUID, handle: String, hasVideo: Bool = false, completion: ((NSError?) -> Void)?) {
-        // 1.
-        let update = CXCallUpdate()
-        update.remoteHandle = CXHandle(type: .phoneNumber, value: handle)
-        update.hasVideo = hasVideo
-        
-        // 2.
-        provider.reportNewIncomingCall(with: uuid, update: update) { error in
-            if error == nil {
-                // 3.
-                let call = Call(uuid: uuid, handle: handle)
-                self.callManager.add(call: call)
-            }
-            
-            // 4.
-            completion?(error as? NSError)
-        }
-    }
 }
 
 extension ProviderDelegate: CXProviderDelegate {
     func providerDidReset(_ provider: CXProvider) {
-        
+        print("Provider did reset")
+        stopAudio()
+    }
+    
+    func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
+        let call = Call(uuid: action.callUUID, handle: action.handle.value)
+        // 1.
+        configureAudioSession()
+        provider.reportOutgoingCall(with: call.uuid, startedConnectingAt: nil)
+        action.fulfill()
+    }
+    
+    func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
+        stopAudio()
+        action.fulfill()
     }
 }
