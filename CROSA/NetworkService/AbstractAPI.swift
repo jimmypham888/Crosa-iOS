@@ -40,7 +40,6 @@ class AbstractAPI {
         let dict = NSDictionary(contentsOfFile: path!)
         
         if let keyStr =  dict?.object(forKey: "Environment") as? String {
-            print("---BaseURL: \(dict!.object(forKey: keyStr))---")
             return dict!.object(forKey: keyStr) as! String
         }else {
             assertionFailure("Please enter Environment item's value in EnvConfiguration.plist")
@@ -242,7 +241,7 @@ class AbstractAPI {
 
 extension AbstractAPI {
     class func createModelTask<T: ImmutableMappable>(_ url: String,
-                                                     method: HTTPMethod = .get,
+                                                     method: HTTPMethod = .post,
                                                      parameters: Parameters? = nil,
                                                      encoding: ParameterEncoding = JSONEncoding.default,
                                                      headers: HTTPHeaders = createHeaders(),
@@ -277,9 +276,9 @@ extension AbstractAPI {
     }
     
     class func createModelArrayTask<T: ImmutableMappable>(_ url: String,
-                                                          method: HTTPMethod = .get,
+                                                          method: HTTPMethod = .post,
                                                           parameters: Parameters? = nil,
-                                                          encoding: ParameterEncoding = URLEncoding.default,
+                                                          encoding: ParameterEncoding = JSONEncoding.default,
                                                           headers: HTTPHeaders = createHeaders(),
                                                           keyPath: String? = "data") -> AlamofireImmutableModelArrayTask<T>.T {
         let task = AlamofireImmutableModelArrayTask<T>.T { progress, fulfill, reject, configure in

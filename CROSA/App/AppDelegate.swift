@@ -21,10 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = self.window ?? UIWindow()
         window!.backgroundColor = .white
-        window!.rootViewController = StringeeViewController()
+        window!.rootViewController = ContactViewController()
         window!.makeKeyAndVisible()
         
         return true
     }
 }
 
+extension AppDelegate {
+    fileprivate func testContactList() {
+        
+    }
+}

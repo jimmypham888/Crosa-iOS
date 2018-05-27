@@ -39,6 +39,12 @@
 		6CA8DBC720BAA62100A82DA5 /* UICollectionViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBC620BAA62100A82DA5 /* UICollectionViewExtensions.swift */; };
 		6CA8DBCA20BAA65A00A82DA5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBC920BAA65A00A82DA5 /* Constant.swift */; };
 		6CA8DBCC20BAA6EA00A82DA5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBCB20BAA6EA00A82DA5 /* StringExtensions.swift */; };
+		6CA8DBD020BAA7C700A82DA5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBCF20BAA7C600A82DA5 /* Contact.swift */; };
+		6CA8DBD220BAAA8F00A82DA5 /* ContactAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBD120BAAA8F00A82DA5 /* ContactAPI.swift */; };
+		6CA8DBD820BAAD5700A82DA5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBD720BAAD5700A82DA5 /* BaseViewController.swift */; };
+		6CA8DBDB20BAADF800A82DA5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBD920BAADF800A82DA5 /* ContactViewController.swift */; };
+		6CA8DBDC20BAADF800A82DA5 /* ContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBDA20BAADF800A82DA5 /* ContactViewController.xib */; };
+		6CA8DBDE20BAB2B900A82DA5 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBDD20BAB2B900A82DA5 /* UIViewControllerExtensions.swift */; };
 		6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */; };
 		6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB220B65A340026BC59 /* Assets.xcassets */; };
 		6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */; };
@@ -78,6 +84,12 @@
 		6CA8DBC620BAA62100A82DA5 /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		6CA8DBC920BAA65A00A82DA5 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6CA8DBCB20BAA6EA00A82DA5 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6CA8DBCF20BAA7C600A82DA5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		6CA8DBD120BAAA8F00A82DA5 /* ContactAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAPI.swift; sourceTree = "<group>"; };
+		6CA8DBD720BAAD5700A82DA5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6CA8DBD920BAADF800A82DA5 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		6CA8DBDA20BAADF800A82DA5 /* ContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
+		6CA8DBDD20BAB2B900A82DA5 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		6CE0FFA820B65A320026BC59 /* CROSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CROSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CE0FFB220B65A340026BC59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,7 +180,7 @@
 		6C8B46B920B9AA360098EDBE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6CA8DB9E20BAA1E100A82DA5 /* Screen */,
+				6CA8DBD420BAACF200A82DA5 /* ContactList */,
 				6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */,
 			);
 			path = UI;
@@ -177,56 +189,11 @@
 		6CA8DB9D20BAA1A100A82DA5 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				6CA8DBA320BAA22C00A82DA5 /* API */,
-				6CA8DBA220BAA22600A82DA5 /* Model */,
+				6CA8DBCE20BAA77E00A82DA5 /* API */,
+				6CA8DBCD20BAA77A00A82DA5 /* Model */,
 				6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */,
 			);
 			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		6CA8DB9E20BAA1E100A82DA5 /* Screen */ = {
-			isa = PBXGroup;
-			children = (
-				6CA8DBA020BAA1EC00A82DA5 /* ContactDetail */,
-				6CA8DBA120BAA1F600A82DA5 /* Dashboard */,
-				6CA8DB9F20BAA1E700A82DA5 /* ListContact */,
-			);
-			path = Screen;
-			sourceTree = "<group>";
-		};
-		6CA8DB9F20BAA1E700A82DA5 /* ListContact */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ListContact;
-			sourceTree = "<group>";
-		};
-		6CA8DBA020BAA1EC00A82DA5 /* ContactDetail */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ContactDetail;
-			sourceTree = "<group>";
-		};
-		6CA8DBA120BAA1F600A82DA5 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		6CA8DBA220BAA22600A82DA5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		6CA8DBA320BAA22C00A82DA5 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		6CA8DBAA20BAA32B00A82DA5 /* Library */ = {
@@ -260,6 +227,7 @@
 				6CA8DBC420BAA5FD00A82DA5 /* ProcessInfoExtensions.swift */,
 				6CA8DBC620BAA62100A82DA5 /* UICollectionViewExtensions.swift */,
 				6CA8DBCB20BAA6EA00A82DA5 /* StringExtensions.swift */,
+				6CA8DBDD20BAB2B900A82DA5 /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,9 +244,43 @@
 		6CA8DBC820BAA64500A82DA5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6CA8DBD620BAAD4400A82DA5 /* BaseClass */,
 				6CA8DBC920BAA65A00A82DA5 /* Constant.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		6CA8DBCD20BAA77A00A82DA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBCF20BAA7C600A82DA5 /* Contact.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6CA8DBCE20BAA77E00A82DA5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBD120BAAA8F00A82DA5 /* ContactAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		6CA8DBD420BAACF200A82DA5 /* ContactList */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBD920BAADF800A82DA5 /* ContactViewController.swift */,
+				6CA8DBDA20BAADF800A82DA5 /* ContactViewController.xib */,
+			);
+			path = ContactList;
+			sourceTree = "<group>";
+		};
+		6CA8DBD620BAAD4400A82DA5 /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				6CA8DBD720BAAD5700A82DA5 /* BaseViewController.swift */,
+			);
+			path = BaseClass;
 			sourceTree = "<group>";
 		};
 		6CE0FF9F20B65A320026BC59 = {
@@ -394,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */,
+				6CA8DBDC20BAADF800A82DA5 /* ContactViewController.xib in Resources */,
 				6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */,
 				6CA8DBA920BAA2AB00A82DA5 /* EnvConfiguration.plist in Resources */,
 				6C353F9720B921580088E214 /* CallKitDemoViewController.xib in Resources */,
@@ -474,6 +477,7 @@
 				6C1424C520B9AC4F0055E5A3 /* Call.swift in Sources */,
 				6CA8DBB420BAA34200A82DA5 /* SwiftTask.swift in Sources */,
 				6CA8DBC120BAA5CB00A82DA5 /* UITableViewExtensions.swift in Sources */,
+				6CA8DBDB20BAADF800A82DA5 /* ContactViewController.swift in Sources */,
 				6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */,
 				6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */,
 				6CA8DBBA20BAA54B00A82DA5 /* NibLoadableView.swift in Sources */,
@@ -481,11 +485,15 @@
 				6CA8DBCA20BAA65A00A82DA5 /* Constant.swift in Sources */,
 				6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */,
 				6C479CB620B70A83001B2B2B /* ProviderDelegate.swift in Sources */,
+				6CA8DBD020BAA7C700A82DA5 /* Contact.swift in Sources */,
+				6CA8DBD820BAAD5700A82DA5 /* BaseViewController.swift in Sources */,
 				6CA8DBCC20BAA6EA00A82DA5 /* StringExtensions.swift in Sources */,
 				6CA8DBC720BAA62100A82DA5 /* UICollectionViewExtensions.swift in Sources */,
 				6CA8DBB320BAA34200A82DA5 /* _RecursiveLock.swift in Sources */,
 				6CA8DBB220BAA34200A82DA5 /* Cancellable.swift in Sources */,
 				6CA8DBB520BAA34200A82DA5 /* _Atomic.swift in Sources */,
+				6CA8DBDE20BAB2B900A82DA5 /* UIViewControllerExtensions.swift in Sources */,
+				6CA8DBD220BAAA8F00A82DA5 /* ContactAPI.swift in Sources */,
 				6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */,
 				6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */,
 				6CA8DBBD20BAA59200A82DA5 /* UIImageViewExtensions.swift in Sources */,
