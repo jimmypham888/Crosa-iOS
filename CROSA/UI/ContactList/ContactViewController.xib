@@ -12,8 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactViewController" customModule="CROSA" customModuleProvider="target">
             <connections>
+                <outlet property="contactList" destination="FK1-1t-wPO" id="1Re-Yh-KOa"/>
                 <outlet property="leftBtn" destination="rAT-Sp-T9r" id="rGh-b5-L5r"/>
+                <outlet property="searchBar" destination="w67-OV-uWg" id="O1W-G7-75t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="wrapperView" destination="PbZ-Z8-ZAp" id="z8S-Ur-jiM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -34,7 +37,10 @@
                                         <constraint firstAttribute="width" constant="24" id="lDs-9f-6Re"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" image="menu_white"/>
+                                    <state key="normal" image="back"/>
+                                    <connections>
+                                        <action selector="didTapBack:" destination="-1" eventType="touchUpInside" id="3Fx-Ut-dap"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh sách contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bi-mR-KOM">
                                     <rect key="frame" x="115.5" y="12" width="143.5" height="21"/>
@@ -52,12 +58,27 @@
                                 <constraint firstItem="rAT-Sp-T9r" firstAttribute="leading" secondItem="qvq-G6-2VW" secondAttribute="leading" constant="16" id="zAm-z6-zs1"/>
                             </constraints>
                         </view>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="w67-OV-uWg">
+                            <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FK1-1t-wPO">
+                            <rect key="frame" x="0.0" y="100" width="375" height="547"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="FK1-1t-wPO" firstAttribute="leading" secondItem="PbZ-Z8-ZAp" secondAttribute="leading" id="6Jv-hU-tzf"/>
+                        <constraint firstAttribute="bottom" secondItem="FK1-1t-wPO" secondAttribute="bottom" id="GXw-Uf-WSz"/>
+                        <constraint firstAttribute="trailing" secondItem="w67-OV-uWg" secondAttribute="trailing" id="IbX-MX-b4i"/>
+                        <constraint firstAttribute="trailing" secondItem="FK1-1t-wPO" secondAttribute="trailing" id="N2d-iq-G2e"/>
+                        <constraint firstItem="w67-OV-uWg" firstAttribute="top" secondItem="qvq-G6-2VW" secondAttribute="bottom" id="cA9-ij-vSI"/>
                         <constraint firstItem="qvq-G6-2VW" firstAttribute="top" secondItem="PbZ-Z8-ZAp" secondAttribute="top" id="gZ6-WR-HhP"/>
                         <constraint firstItem="qvq-G6-2VW" firstAttribute="leading" secondItem="PbZ-Z8-ZAp" secondAttribute="leading" id="iwM-mA-x5v"/>
+                        <constraint firstItem="w67-OV-uWg" firstAttribute="leading" secondItem="PbZ-Z8-ZAp" secondAttribute="leading" id="oQ3-0U-ytB"/>
                         <constraint firstAttribute="trailing" secondItem="qvq-G6-2VW" secondAttribute="trailing" id="yKL-gW-Uph"/>
+                        <constraint firstItem="FK1-1t-wPO" firstAttribute="top" secondItem="w67-OV-uWg" secondAttribute="bottom" id="zAN-mU-WsP"/>
                     </constraints>
                 </view>
             </subviews>
@@ -72,6 +93,6 @@
         </view>
     </objects>
     <resources>
-        <image name="menu_white" width="24" height="24"/>
+        <image name="back" width="36" height="36"/>
     </resources>
 </document>

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.backgroundColor = .white
         
         let leftMenu = LeftMenuViewController()
-        let main = ContactViewController()
+        let main = DashBoardViewController(userId: 1)
         let mainNav = BaseNavigationController(rootViewController: main)
         mainNav.setNavigationBarHidden(true, animated: false)
         let slideMenuController = SlideMenuController(mainViewController: mainNav, leftMenuViewController: leftMenu)
