@@ -11,10 +11,17 @@ import SVProgressHUD
 
 class ContactViewController: BaseViewController {
     
+    @IBOutlet weak var leftBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadContact()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBarItem(leftBtn)
     }
     
     private func loadContact() {

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactViewController" customModule="CROSA" customModuleProvider="target">
             <connections>
+                <outlet property="leftBtn" destination="rAT-Sp-T9r" id="rGh-b5-L5r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,8 +20,58 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbZ-Z8-ZAp">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvq-G6-2VW">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAT-Sp-T9r">
+                                    <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="K1J-HL-bTG"/>
+                                        <constraint firstAttribute="width" constant="24" id="lDs-9f-6Re"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" image="menu_white"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh sách contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bi-mR-KOM">
+                                    <rect key="frame" x="115.5" y="12" width="143.5" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="rAT-Sp-T9r" firstAttribute="centerY" secondItem="qvq-G6-2VW" secondAttribute="centerY" id="8Zx-M1-svy"/>
+                                <constraint firstItem="7bi-mR-KOM" firstAttribute="centerX" secondItem="qvq-G6-2VW" secondAttribute="centerX" id="K2k-or-Gbh"/>
+                                <constraint firstAttribute="height" constant="44" id="wkf-Im-9Bs"/>
+                                <constraint firstItem="7bi-mR-KOM" firstAttribute="centerY" secondItem="qvq-G6-2VW" secondAttribute="centerY" id="x4K-BQ-G5i"/>
+                                <constraint firstItem="rAT-Sp-T9r" firstAttribute="leading" secondItem="qvq-G6-2VW" secondAttribute="leading" constant="16" id="zAm-z6-zs1"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qvq-G6-2VW" firstAttribute="top" secondItem="PbZ-Z8-ZAp" secondAttribute="top" id="gZ6-WR-HhP"/>
+                        <constraint firstItem="qvq-G6-2VW" firstAttribute="leading" secondItem="PbZ-Z8-ZAp" secondAttribute="leading" id="iwM-mA-x5v"/>
+                        <constraint firstAttribute="trailing" secondItem="qvq-G6-2VW" secondAttribute="trailing" id="yKL-gW-Uph"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.8666666666666667" green="0.5607843137254902" blue="0.16470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PbZ-Z8-ZAp" secondAttribute="trailing" id="1UQ-3N-f9I"/>
+                <constraint firstItem="PbZ-Z8-ZAp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="57q-5X-RBW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PbZ-Z8-ZAp" secondAttribute="bottom" id="J3i-Yc-Yra"/>
+                <constraint firstItem="PbZ-Z8-ZAp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zQs-Mc-M64"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="menu_white" width="24" height="24"/>
+    </resources>
 </document>

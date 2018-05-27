@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,9 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        configSlideMenu()
+        
         window = self.window ?? UIWindow()
         window!.backgroundColor = .white
-        window!.rootViewController = ContactViewController()
+        
+        let leftMenu = LeftMenuViewController()
+        let main = ContactViewController()
+        let mainNav = BaseNavigationController(rootViewController: main)
+        mainNav.setNavigationBarHidden(true, animated: false)
+        let slideMenuController = SlideMenuController(mainViewController: mainNav, leftMenuViewController: leftMenu)
+        window!.rootViewController = slideMenuController
         window!.makeKeyAndVisible()
         
         return true
@@ -29,7 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    fileprivate func testContactList() {
-        
+    fileprivate func configSlideMenu() {
+        SlideMenuOptions.contentViewScale = 1
+        SlideMenuOptions.animationDuration = 0.27
+        SlideMenuOptions.leftViewWidth = UIScreen.main.bounds.width * 0.85
+        SlideMenuOptions.contentViewDrag = true
     }
 }

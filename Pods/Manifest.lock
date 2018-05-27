@@ -14,6 +14,7 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
+  - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.0)
   - Stringee (1.2.6)
   - SVProgressHUD (2.2.5)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxGesture
   - RxSwift (~> 4.0)
+  - SlideMenuControllerSwift
   - SnapKit (~> 4.0.0)
   - Stringee
   - SVProgressHUD
@@ -47,6 +49,7 @@ SPEC REPOS:
     - RxCocoa
     - RxGesture
     - RxSwift
+    - SlideMenuControllerSwift
     - SnapKit
     - Stringee
     - SVProgressHUD
@@ -62,12 +65,13 @@ SPEC CHECKSUMS:
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: e49536837d9901277638493ea537394d4b55f570
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Stringee: 722c2baf1f0fc11a018fca2118a39c60b028f798
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 189f47f818fd35e46f9070fc80774f83fe2c80e1
+PODFILE CHECKSUM: cef59a4904e4a407947046d130601a336c592966
 
 COCOAPODS: 1.5.2

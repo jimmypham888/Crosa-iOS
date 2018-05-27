@@ -24,4 +24,15 @@ extension UIViewController {
         alert.addAction(acOk)
         present(alert, animated: true, completion: nil)
     }
+    
+    func setNavigationBarItem(_ button: UIButton) {
+        button.addTarget(self.slideMenuController(), action: #selector(toggleLeft), for: .touchUpInside)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.addLeftGestures()
+    }
+    
+    func removeNavigationBarItem() {
+        self.navigationItem.leftBarButtonItem = nil
+        self.slideMenuController()?.removeLeftGestures()
+    }
 }
