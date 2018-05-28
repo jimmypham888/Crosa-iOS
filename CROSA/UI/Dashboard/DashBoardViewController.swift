@@ -32,6 +32,6 @@ class DashBoardViewController: BaseViewController {
     }
 
     @IBAction func didTapGoToListContact(_ sender: UIButton) {
-        navigationController?.pushViewController(ContactViewController(), animated: true)
+        navigationController?.pushViewController(ContactViewController(contactId: userId), animated: true)
     }
 }

@@ -28,6 +28,18 @@ class ContactViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     
+    
+    let contactId: Int
+    
+    init(contactId: Int) {
+        self.contactId = contactId
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,7 +81,7 @@ class ContactViewController: BaseViewController {
     
     private func loadContact() {
         SVProgressHUD.show()
-        Contact.get(id: 1, success: { (contacts) in
+        Contact.get(id: contactId, success: { (contacts) in
             SVProgressHUD.dismiss()
             self.contacts = contacts
             self.filterContacts = contacts

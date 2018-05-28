@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if AccountAuth.default.isLogin {
             let leftMenu = LeftMenuViewController()
-            let main = DashBoardViewController(userId: 1)
+            let main = DashBoardViewController(userId: AccountAuth.default.id)
             let mainNav = BaseNavigationController(rootViewController: main)
             mainNav.setNavigationBarHidden(true, animated: false)
             let slideMenuController = SlideMenuController(mainViewController: mainNav, leftMenuViewController: leftMenu)
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func loginSuccess() {
         let leftMenu = LeftMenuViewController()
-        let main = DashBoardViewController(userId: 1)
+        let main = DashBoardViewController(userId: AccountAuth.default.id)
         let mainNav = BaseNavigationController(rootViewController: main)
         mainNav.setNavigationBarHidden(true, animated: false)
         let slideMenuController = SlideMenuController(mainViewController: mainNav, leftMenuViewController: leftMenu)
