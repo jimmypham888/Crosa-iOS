@@ -35,6 +35,7 @@ let log: XCGLogger? = {
 }()
 
 enum API {
+    static let login = "login"
     static let listContact = "getContact"
     static let contactDetail = ""
 }

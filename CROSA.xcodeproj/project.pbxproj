@@ -22,6 +22,10 @@
 		6C7B635D20B6940E008821F3 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7B635C20B6940E008821F3 /* libstdc++.tbd */; };
 		6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B46B020B9A7C10098EDBE /* CallManager.swift */; };
 		6C8B46B520B9A9E40098EDBE /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B46B420B9A9E40098EDBE /* Audio.swift */; };
+		6C8B78AF20BAFEB600C43518 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B78AD20BAFEB600C43518 /* LoginViewController.swift */; };
+		6C8B78B020BAFEB600C43518 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C8B78AE20BAFEB600C43518 /* LoginViewController.xib */; };
+		6C8B78B320BB014F00C43518 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B78B220BB014F00C43518 /* Account.swift */; };
+		6C8B78B520BB020B00C43518 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B78B420BB020B00C43518 /* AccountAPI.swift */; };
 		6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */; };
 		6CA8DBA920BAA2AB00A82DA5 /* EnvConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBA820BAA2AB00A82DA5 /* EnvConfiguration.plist */; };
 		6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBAC20BAA34200A82DA5 /* _StateMachine.swift */; };
@@ -78,6 +82,10 @@
 		6C7B635C20B6940E008821F3 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		6C8B46B020B9A7C10098EDBE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		6C8B46B420B9A9E40098EDBE /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
+		6C8B78AD20BAFEB600C43518 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6C8B78AE20BAFEB600C43518 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		6C8B78B220BB014F00C43518 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		6C8B78B420BB020B00C43518 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
 		6C9A51DA20B65FD5006C5B73 /* CROSA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CROSA-Bridging-Header.h"; sourceTree = "<group>"; };
 		6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAPI.swift; sourceTree = "<group>"; };
 		6CA8DBA820BAA2AB00A82DA5 /* EnvConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnvConfiguration.plist; sourceTree = "<group>"; };
@@ -205,6 +213,7 @@
 		6C8B46B920B9AA360098EDBE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6C8B78AC20BAFE9F00C43518 /* Login */,
 				6CA8DBEA20BAC1FB00A82DA5 /* Dashboard */,
 				6CA8DBDF20BAB60E00A82DA5 /* LeftMenu */,
 				6CA8DBD420BAACF200A82DA5 /* ContactList */,
@@ -214,9 +223,27 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		6C8B78AC20BAFE9F00C43518 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6C8B78AD20BAFEB600C43518 /* LoginViewController.swift */,
+				6C8B78AE20BAFEB600C43518 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		6C8B78B120BB012D00C43518 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				6C8B78B220BB014F00C43518 /* Account.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		6CA8DB9D20BAA1A100A82DA5 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				6C8B78B120BB012D00C43518 /* Account */,
 				6CA8DBCE20BAA77E00A82DA5 /* API */,
 				6CA8DBCD20BAA77A00A82DA5 /* Model */,
 				6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */,
@@ -290,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				6CA8DBD120BAAA8F00A82DA5 /* ContactAPI.swift */,
+				6C8B78B420BB020B00C43518 /* AccountAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -473,6 +501,7 @@
 			files = (
 				6CA8DBF320BAC7F800A82DA5 /* ContactTableViewCell.xib in Resources */,
 				6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */,
+				6C8B78B020BAFEB600C43518 /* LoginViewController.xib in Resources */,
 				6CA8DBDC20BAADF800A82DA5 /* ContactViewController.xib in Resources */,
 				6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */,
 				6CA8DBEE20BAC23000A82DA5 /* DashBoardViewController.xib in Resources */,
@@ -571,6 +600,7 @@
 				6CA8DBD020BAA7C700A82DA5 /* Contact.swift in Sources */,
 				6CA8DBD820BAAD5700A82DA5 /* BaseViewController.swift in Sources */,
 				6CA8DBF220BAC7F800A82DA5 /* ContactTableViewCell.swift in Sources */,
+				6C8B78B320BB014F00C43518 /* Account.swift in Sources */,
 				6CA8DBCC20BAA6EA00A82DA5 /* StringExtensions.swift in Sources */,
 				6CA8DBE220BAB64400A82DA5 /* LeftMenuViewController.swift in Sources */,
 				6CA8DBC720BAA62100A82DA5 /* UICollectionViewExtensions.swift in Sources */,
@@ -578,10 +608,12 @@
 				6CA8DBB220BAA34200A82DA5 /* Cancellable.swift in Sources */,
 				6CA8DBB520BAA34200A82DA5 /* _Atomic.swift in Sources */,
 				6CA8DBDE20BAB2B900A82DA5 /* UIViewControllerExtensions.swift in Sources */,
+				6C8B78AF20BAFEB600C43518 /* LoginViewController.swift in Sources */,
 				6CA8DBD220BAAA8F00A82DA5 /* ContactAPI.swift in Sources */,
 				6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */,
 				6CA8DBE720BAB69900A82DA5 /* BaseCollectionViewCell.swift in Sources */,
 				6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */,
+				6C8B78B520BB020B00C43518 /* AccountAPI.swift in Sources */,
 				6CA8DBFB20BAE8CF00A82DA5 /* StringeeManager.swift in Sources */,
 				6CA8DBBD20BAA59200A82DA5 /* UIImageViewExtensions.swift in Sources */,
 				6CA8DBBF20BAA5B100A82DA5 /* UIViewExtensions.swift in Sources */,
