@@ -9,10 +9,18 @@
 import Alamofire
 
 class ContactAPI: AbstractAPI {
+    
     static func get(id: Int) -> AlamofireImmutableModelArrayTask<Contact>.T {
         let params: Parameters = [
             "id_user_tvts": "\(id)"
         ]
         return createModelArrayTask(API.listContact, parameters: params)
+    }
+    
+    static func get(phoneNumber: String) -> AlamofireImmutableModelArrayTask<HistoryCall>.T {
+        let params: Parameters = [
+            "mobile_phone": phoneNumber
+        ]
+        return createModelArrayTask(API.getAllHistoryCall, parameters: params)
     }
 }
