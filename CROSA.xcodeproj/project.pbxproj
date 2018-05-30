@@ -173,6 +173,17 @@
 			path = Call;
 			sourceTree = "<group>";
 		};
+		6C543EB420BBF72E0096B287 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6C7B634E20B6939D008821F3 /* StringeeViewController.swift */,
+				6C7B634F20B6939D008821F3 /* StringeeViewController.xib */,
+				6C353F9420B921570088E214 /* CallKitDemoViewController.swift */,
+				6C353F9520B921570088E214 /* CallKitDemoViewController.xib */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
 		6C8B46B220B9A9560098EDBE /* CallManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +419,7 @@
 		6CE0FFAA20B65A320026BC59 /* CROSA */ = {
 			isa = PBXGroup;
 			children = (
+				6C543EB420BBF72E0096B287 /* Demo */,
 				6CA8DBC820BAA64500A82DA5 /* Common */,
 				6CA8DBB620BAA53F00A82DA5 /* Extensions */,
 				6CA8DBAA20BAA32B00A82DA5 /* Library */,
@@ -416,10 +428,6 @@
 				6C479CB420B70A60001B2B2B /* Call */,
 				6C8B46B920B9AA360098EDBE /* UI */,
 				6C8B46B820B9AA150098EDBE /* Supporting Files */,
-				6C7B634E20B6939D008821F3 /* StringeeViewController.swift */,
-				6C7B634F20B6939D008821F3 /* StringeeViewController.xib */,
-				6C353F9420B921570088E214 /* CallKitDemoViewController.swift */,
-				6C353F9520B921570088E214 /* CallKitDemoViewController.xib */,
 			);
 			path = CROSA;
 			sourceTree = "<group>";
