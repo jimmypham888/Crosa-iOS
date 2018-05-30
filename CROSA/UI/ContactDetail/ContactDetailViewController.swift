@@ -8,13 +8,13 @@
 
 import UIKit
 import SVProgressHUD
+import PopupDialog
 
 class ContactDetailViewController: BaseViewController {
 
     @IBOutlet weak var wrapperView: UIView!
     
     private let contact: Contact
-    private var historyCall: [HistoryCall] = []
     @IBOutlet weak var callState: UILabel!
     
     init(withContact contact: Contact) {
@@ -31,16 +31,26 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var emailTf: UITextField!
     
     @IBOutlet weak var callBtn: UIButton!
-    
+
     @IBAction func didTapShowListRecord(_ sender: UIButton) {
         SVProgressHUD.show()
         contact.getRecord(success: { (historyCall) in
             SVProgressHUD.dismiss()
-            self.historyCall.append(contentsOf: historyCall)
+            self.showRecordListVC(historyCalls: historyCall)
         }) {
             SVProgressHUD.dismiss()
             self.errorServer(content: $0)
         }
+    }
+    
+    private func showRecordListVC(historyCalls: [HistoryCall]) {
+        let record = RecordListViewController(record: historyCalls)
+        let popupDialog = PopupDialog(viewController: record,
+                                      buttonAlignment: .horizontal,
+                                      transitionStyle: .fadeIn,
+                                      preferredWidth: UIScreen.main.bounds.width - 16 * 2,
+                                      gestureDismissal: true)
+        present(popupDialog, animated: true, completion: nil)
     }
     
     @IBAction func didTapCall(_ sender: UIButton) {

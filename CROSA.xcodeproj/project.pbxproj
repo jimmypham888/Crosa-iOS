@@ -27,6 +27,10 @@
 		6C8B78B020BAFEB600C43518 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C8B78AE20BAFEB600C43518 /* LoginViewController.xib */; };
 		6C8B78B320BB014F00C43518 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B78B220BB014F00C43518 /* Account.swift */; };
 		6C8B78B520BB020B00C43518 /* AccountAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8B78B420BB020B00C43518 /* AccountAPI.swift */; };
+		6C9B7C5920BF1BBF002D5CEF /* RecordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B7C5720BF1BBF002D5CEF /* RecordListViewController.swift */; };
+		6C9B7C5A20BF1BBF002D5CEF /* RecordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C9B7C5820BF1BBF002D5CEF /* RecordListViewController.xib */; };
+		6C9B7C5E20BF1FF8002D5CEF /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B7C5C20BF1FF8002D5CEF /* RecordCell.swift */; };
+		6C9B7C5F20BF1FF8002D5CEF /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C9B7C5D20BF1FF8002D5CEF /* RecordCell.xib */; };
 		6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */; };
 		6CA8DBA920BAA2AB00A82DA5 /* EnvConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA8DBA820BAA2AB00A82DA5 /* EnvConfiguration.plist */; };
 		6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA8DBAC20BAA34200A82DA5 /* _StateMachine.swift */; };
@@ -89,6 +93,10 @@
 		6C8B78B220BB014F00C43518 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		6C8B78B420BB020B00C43518 /* AccountAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPI.swift; sourceTree = "<group>"; };
 		6C9A51DA20B65FD5006C5B73 /* CROSA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CROSA-Bridging-Header.h"; sourceTree = "<group>"; };
+		6C9B7C5720BF1BBF002D5CEF /* RecordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordListViewController.swift; sourceTree = "<group>"; };
+		6C9B7C5820BF1BBF002D5CEF /* RecordListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordListViewController.xib; sourceTree = "<group>"; };
+		6C9B7C5C20BF1FF8002D5CEF /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		6C9B7C5D20BF1FF8002D5CEF /* RecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
 		6CA8DBA420BAA24800A82DA5 /* AbstractAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAPI.swift; sourceTree = "<group>"; };
 		6CA8DBA820BAA2AB00A82DA5 /* EnvConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnvConfiguration.plist; sourceTree = "<group>"; };
 		6CA8DBAC20BAA34200A82DA5 /* _StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StateMachine.swift; sourceTree = "<group>"; };
@@ -253,6 +261,25 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		6C9B7C5620BF1BA3002D5CEF /* RecordList */ = {
+			isa = PBXGroup;
+			children = (
+				6C9B7C5B20BF1FE6002D5CEF /* Cell */,
+				6C9B7C5720BF1BBF002D5CEF /* RecordListViewController.swift */,
+				6C9B7C5820BF1BBF002D5CEF /* RecordListViewController.xib */,
+			);
+			path = RecordList;
+			sourceTree = "<group>";
+		};
+		6C9B7C5B20BF1FE6002D5CEF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6C9B7C5C20BF1FF8002D5CEF /* RecordCell.swift */,
+				6C9B7C5D20BF1FF8002D5CEF /* RecordCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		6CA8DB9D20BAA1A100A82DA5 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +414,7 @@
 		6CA8DBF820BADD6D00A82DA5 /* ContactDetail */ = {
 			isa = PBXGroup;
 			children = (
+				6C9B7C5620BF1BA3002D5CEF /* RecordList */,
 				6CA8DBF420BADD6700A82DA5 /* ContactDetailViewController.swift */,
 				6CA8DBF520BADD6700A82DA5 /* ContactDetailViewController.xib */,
 			);
@@ -516,11 +544,13 @@
 				6CA8DBDC20BAADF800A82DA5 /* ContactViewController.xib in Resources */,
 				6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */,
 				6CA8DBEE20BAC23000A82DA5 /* DashBoardViewController.xib in Resources */,
+				6C9B7C5F20BF1FF8002D5CEF /* RecordCell.xib in Resources */,
 				6CA8DBA920BAA2AB00A82DA5 /* EnvConfiguration.plist in Resources */,
 				6C353F9720B921580088E214 /* CallKitDemoViewController.xib in Resources */,
 				6CA8DBE320BAB64400A82DA5 /* LeftMenuViewController.xib in Resources */,
 				6CA8DBF720BADD6700A82DA5 /* ContactDetailViewController.xib in Resources */,
 				6C7B635120B6939D008821F3 /* StringeeViewController.xib in Resources */,
+				6C9B7C5A20BF1BBF002D5CEF /* RecordListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,9 +584,11 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CROSA/Pods-CROSA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -570,9 +602,11 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -604,6 +638,7 @@
 				6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */,
 				6CA8DBE920BABE8800A82DA5 /* BaseNavigationController.swift in Sources */,
 				6CA8DBBA20BAA54B00A82DA5 /* NibLoadableView.swift in Sources */,
+				6C9B7C5E20BF1FF8002D5CEF /* RecordCell.swift in Sources */,
 				6CA8DBC520BAA5FD00A82DA5 /* ProcessInfoExtensions.swift in Sources */,
 				6CA8DBCA20BAA65A00A82DA5 /* Constant.swift in Sources */,
 				6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */,
@@ -622,6 +657,7 @@
 				6CA8DBDE20BAB2B900A82DA5 /* UIViewControllerExtensions.swift in Sources */,
 				6C8B78AF20BAFEB600C43518 /* LoginViewController.swift in Sources */,
 				6CA8DBD220BAAA8F00A82DA5 /* ContactAPI.swift in Sources */,
+				6C9B7C5920BF1BBF002D5CEF /* RecordListViewController.swift in Sources */,
 				6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */,
 				6CA8DBE720BAB69900A82DA5 /* BaseCollectionViewCell.swift in Sources */,
 				6CA8DBA520BAA24800A82DA5 /* AbstractAPI.swift in Sources */,
