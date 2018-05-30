@@ -157,9 +157,30 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sH0-AF-PQ1">
+                                                            <rect key="frame" x="32" y="212.5" width="144" height="32"/>
+                                                            <color key="backgroundColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="Yh4-nO-LPq"/>
+                                                                <constraint firstAttribute="width" constant="144" id="kbb-Pw-OQ4"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <state key="normal" title="Danh sách ghi âm">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="16"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="didTapShowListRecord:" destination="-1" eventType="touchUpInside" id="ECf-qj-790"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="sH0-AF-PQ1" firstAttribute="leading" secondItem="VBE-Iu-os3" secondAttribute="leading" id="00Q-r0-jdn"/>
                                                         <constraint firstItem="5aG-et-u69" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="16" id="1QH-2H-piF"/>
                                                         <constraint firstItem="kNU-Bh-6a1" firstAttribute="leading" secondItem="Gnx-Lg-Wes" secondAttribute="leading" id="27o-kt-JJX"/>
                                                         <constraint firstItem="eX7-SU-qLk" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="16" id="6PR-DG-0ql"/>
@@ -183,6 +204,7 @@
                                                         <constraint firstItem="Gnx-Lg-Wes" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="120" id="mWF-2O-Rda"/>
                                                         <constraint firstItem="q4m-bP-qxb" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="16" id="nB1-cX-Cow"/>
                                                         <constraint firstItem="5aG-et-u69" firstAttribute="top" secondItem="0My-mc-xmh" secondAttribute="bottom" constant="16" id="qkT-u3-9yf"/>
+                                                        <constraint firstItem="sH0-AF-PQ1" firstAttribute="top" secondItem="VBE-Iu-os3" secondAttribute="bottom" constant="12" id="rkP-n0-hN0"/>
                                                         <constraint firstAttribute="trailing" secondItem="kNU-Bh-6a1" secondAttribute="trailing" constant="16" id="w1S-DJ-fVe"/>
                                                     </constraints>
                                                 </view>

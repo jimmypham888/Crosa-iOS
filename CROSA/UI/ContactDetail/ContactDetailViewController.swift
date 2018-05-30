@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ContactDetailViewController: BaseViewController {
 
     @IBOutlet weak var wrapperView: UIView!
     
     private let contact: Contact
+    private var historyCall: [HistoryCall] = []
     @IBOutlet weak var callState: UILabel!
     
     init(withContact contact: Contact) {
@@ -29,6 +31,18 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var emailTf: UITextField!
     
     @IBOutlet weak var callBtn: UIButton!
+    
+    @IBAction func didTapShowListRecord(_ sender: UIButton) {
+        SVProgressHUD.show()
+        contact.getRecord(success: { (historyCall) in
+            SVProgressHUD.dismiss()
+            self.historyCall.append(contentsOf: historyCall)
+        }) {
+            SVProgressHUD.dismiss()
+            self.errorServer(content: $0)
+        }
+    }
+    
     @IBAction func didTapCall(_ sender: UIButton) {
         if isCalling {
             // End call
