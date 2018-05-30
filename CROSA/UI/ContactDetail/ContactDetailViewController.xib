@@ -157,13 +157,35 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xj-XF-dwV">
+                                                            <rect key="frame" x="32" y="216" width="136" height="32"/>
+                                                            <color key="backgroundColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="32" id="14a-Nf-d0J"/>
+                                                                <constraint firstAttribute="width" constant="136" id="TA4-TO-S0T"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <state key="normal" title="Danh sách ghi âm">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="16"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="didTapListRecord:" destination="-1" eventType="touchUpInside" id="6gm-hN-fN0"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.79607843137254897" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="5xj-XF-dwV" firstAttribute="leading" secondItem="VBE-Iu-os3" secondAttribute="leading" id="00c-Vq-oHy"/>
                                                         <constraint firstItem="5aG-et-u69" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="16" id="1QH-2H-piF"/>
                                                         <constraint firstItem="kNU-Bh-6a1" firstAttribute="leading" secondItem="Gnx-Lg-Wes" secondAttribute="leading" id="27o-kt-JJX"/>
                                                         <constraint firstItem="eX7-SU-qLk" firstAttribute="leading" secondItem="9Br-R5-BWn" secondAttribute="leading" constant="16" id="6PR-DG-0ql"/>
                                                         <constraint firstItem="LyT-N6-Tb4" firstAttribute="centerY" secondItem="VBE-Iu-os3" secondAttribute="centerY" id="7iL-e7-mNl"/>
+                                                        <constraint firstItem="5xj-XF-dwV" firstAttribute="top" secondItem="VBE-Iu-os3" secondAttribute="bottom" constant="15.5" id="Eam-Ew-MPW"/>
                                                         <constraint firstItem="LyT-N6-Tb4" firstAttribute="leading" secondItem="VBE-Iu-os3" secondAttribute="trailing" constant="16" id="Fei-HY-f0S"/>
                                                         <constraint firstAttribute="height" constant="256" id="Lzf-gh-ssY"/>
                                                         <constraint firstItem="Pat-bA-1MW" firstAttribute="centerY" secondItem="LyT-N6-Tb4" secondAttribute="centerY" id="RaW-48-k0h"/>

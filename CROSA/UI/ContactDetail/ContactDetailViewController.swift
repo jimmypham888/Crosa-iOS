@@ -29,6 +29,11 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var emailTf: UITextField!
     
     @IBOutlet weak var callBtn: UIButton!
+    
+    @IBAction func didTapListRecord(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func didTapCall(_ sender: UIButton) {
         if isCalling {
             // End call

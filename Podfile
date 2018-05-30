@@ -19,5 +19,6 @@ target 'CROSA' do
     pod 'XCGLogger'
     pod 'AlamofireObjectMapper', '~> 5.0'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'DropDown'
     
 end
