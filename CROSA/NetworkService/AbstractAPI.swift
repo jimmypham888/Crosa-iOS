@@ -310,48 +310,6 @@ extension AbstractAPI {
         
         return task
     }
-    
-    class func _createModelArrayTask<T: ImmutableMappable>(_ url: String,
-                                                           method: HTTPMethod = .get,
-                                                           parameters params: Parameters? = nil,
-                                                           encoding: ParameterEncoding = URLEncoding.default,
-                                                           headers: HTTPHeaders = createHeaders(),
-                                                           keyPath: String = "data") -> AlamofireImmutableModelArrayTask<T>.T {
-        let task = AlamofireImmutableModelArrayTask<T>.T { progress, fulfill, reject, configure in
-            log?.debug("====request: \(method.rawValue) \(url) \nheaders: \n\(createHeaders()) \nparams: \n\(params ?? [:])")
-            
-            let request = Alamofire.request(rootUrl + url, method: method, parameters: params, encoding: encoding, headers: headers)
-            
-            request
-                .downloadProgress(queue: DispatchQueue.global(qos: .utility), closure: { progress($0) })
-                .validate()
-                .responseJSON(completionHandler: { (response) in
-                    if let dict = response.value as? Dictionary<String, Any> {
-                        if let matched = dict[keyPath] as? [Dictionary<String, Any>] {
-                            let values = matched
-                                .map { Map(mappingType: .fromJSON, JSON: $0) }
-                                .map { try! T(map: $0) }
-                            
-                            fulfill(values)
-                        } else {
-                            fulfill([])
-                        }
-                    } else {
-                        if let data = response.data {
-                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)\njson: \n\(String(describing: try? JSON(data: data)))")
-                            let statusCode = response.response?.statusCode ?? 999
-                            reject((statusCode: statusCode, body: data))
-                        } else {
-                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)")
-                            reject((statusCode: 1999, body: Data()))
-                        }
-                    }
-                })
-            configRequestTask(configure, request: request)
-        }
-        
-        return task
-    }
 }
 
 extension AbstractAPI {

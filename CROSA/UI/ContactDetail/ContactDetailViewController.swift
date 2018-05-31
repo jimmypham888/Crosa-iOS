@@ -36,7 +36,11 @@ class ContactDetailViewController: BaseViewController {
         SVProgressHUD.show()
         contact.getRecord(success: { (historyCall) in
             SVProgressHUD.dismiss()
-            self.showRecordListVC(historyCalls: historyCall)
+            if historyCall.count == 0 {
+                self.errorServer(content: "Không có dữ liệu ghi âm cuộc gọi!")
+            } else {
+                self.showRecordListVC(historyCalls: historyCall)
+            }
         }) {
             SVProgressHUD.dismiss()
             self.errorServer(content: $0)

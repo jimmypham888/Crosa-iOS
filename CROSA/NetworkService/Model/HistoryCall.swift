@@ -12,13 +12,13 @@ class HistoryCall: ImmutableMappable {
     
     let callId: String
     let mobilePhone: String
-//    let duration: Int
-//    let ringTime: Int
+    let startTime: String
     let linkDownRecord: String
     
     required init(map: Map) throws {
         callId = try map.value("call_id")
         mobilePhone = try map.value("mobile_phone")
+        startTime = try map.value("start_time")
         linkDownRecord = try map.value("link_down_record")
     }
 }

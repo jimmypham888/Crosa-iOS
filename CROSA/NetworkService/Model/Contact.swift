@@ -42,7 +42,7 @@ class Contact: ImmutableMappable {
     
     func getRecord(success: @escaping ([HistoryCall]) -> Void,
                    failure: @escaping (String) -> Void) {
-        ContactAPI.get(phoneNumber: "84966921094")
+        ContactAPI.get(phoneNumber: phone)
             .success { success($0) }
             .failure { _ in }
     }

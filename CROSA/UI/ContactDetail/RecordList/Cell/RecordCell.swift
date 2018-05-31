@@ -24,7 +24,7 @@ class RecordCell: BaseTableViewCell {
     }
 
     func updateWith(historyCall: HistoryCall, action: @escaping (() -> ())) {
-        mainLbl.text = historyCall.mobilePhone
+        mainLbl.text = historyCall.startTime
         didTapPlay = action
     }
 }
