@@ -46,7 +46,7 @@ extension RecordListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(type: RecordCell.self, for: indexPath)
         let historyCall = historyCalls[indexPath.row]
-        cell.updateWith(historyCall: historyCall) {
+        cell.updateWith(historyCall: historyCall, index: indexPath.row + 1) {
             self.startDownload(audioUrl: historyCall.linkDownRecord)
         }
         return cell
