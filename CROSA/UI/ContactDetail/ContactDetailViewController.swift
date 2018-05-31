@@ -52,7 +52,7 @@ class ContactDetailViewController: BaseViewController {
         let popupDialog = PopupDialog(viewController: record,
                                       buttonAlignment: .horizontal,
                                       transitionStyle: .fadeIn,
-                                      preferredWidth: UIScreen.main.bounds.width - 16 * 2,
+                                      preferredWidth: UIScreen.main.bounds.width - 16,
                                       gestureDismissal: true)
         present(popupDialog, animated: true, completion: nil)
     }

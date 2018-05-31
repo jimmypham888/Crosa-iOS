@@ -10,7 +10,8 @@ import UIKit
 
 class RecordCell: BaseTableViewCell {
 
-    @IBOutlet weak var mainLbl: UILabel!
+    @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var noLbl: UILabel!
     
     private var didTapPlay: (() -> ())?
     
@@ -23,8 +24,9 @@ class RecordCell: BaseTableViewCell {
         didTapPlay = nil
     }
 
-    func updateWith(historyCall: HistoryCall, action: @escaping (() -> ())) {
-        mainLbl.text = historyCall.startTime
+    func updateWith(historyCall: HistoryCall, index: Int, action: @escaping (() -> ())) {
+        dateLbl.text = historyCall.startTime
+        noLbl.text = index.description
         didTapPlay = action
     }
 }
