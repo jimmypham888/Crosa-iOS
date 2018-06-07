@@ -69,11 +69,11 @@
 		6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */; };
 		6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB220B65A340026BC59 /* Assets.xcassets */; };
 		6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */; };
-		FA0B2AE720C797D6006AB589 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AE620C797D6006AB589 /* Checkbox.swift */; };
 		FA0B2AED20C7E93B006AB589 /* StepCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AE920C7E93B006AB589 /* StepCollectionViewFlowLayout.swift */; };
 		FA0B2AEE20C7E93B006AB589 /* FullDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEA20C7E93B006AB589 /* FullDateCollectionViewCell.swift */; };
 		FA0B2AEF20C7E93B006AB589 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEB20C7E93B006AB589 /* DateTimePicker.swift */; };
 		FA0B2AF020C7E93B006AB589 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */; };
+		FA0B2AF320C8DEC6006AB589 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AF220C8DEC5006AB589 /* Checkbox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,11 +144,11 @@
 		6CE0FFB720B65A340026BC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7205D19B3F2585EB73829010 /* Pods-CROSA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CROSA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CROSA/Pods-CROSA.release.xcconfig"; sourceTree = "<group>"; };
 		B6818358FB8410F1B7D3D41D /* Pods-CROSA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CROSA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CROSA/Pods-CROSA.debug.xcconfig"; sourceTree = "<group>"; };
-		FA0B2AE620C797D6006AB589 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		FA0B2AE920C7E93B006AB589 /* StepCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		FA0B2AEA20C7E93B006AB589 /* FullDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA0B2AEB20C7E93B006AB589 /* DateTimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
 		FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA0B2AF220C8DEC5006AB589 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,8 +460,8 @@
 		6CE0FFAA20B65A320026BC59 /* CROSA */ = {
 			isa = PBXGroup;
 			children = (
+				FA0B2AF120C8DEC5006AB589 /* checkbox */,
 				FA0B2AE820C7E93B006AB589 /* Source */,
-				FA0B2AE520C797D6006AB589 /* checkbox */,
 				6C543EB420BBF72E0096B287 /* Demo */,
 				6CA8DBC820BAA64500A82DA5 /* Common */,
 				6CA8DBB620BAA53F00A82DA5 /* Extensions */,
@@ -484,15 +484,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FA0B2AE520C797D6006AB589 /* checkbox */ = {
-			isa = PBXGroup;
-			children = (
-				FA0B2AE620C797D6006AB589 /* Checkbox.swift */,
-			);
-			name = checkbox;
-			path = "../../SimpleCheckbox-master/checkbox";
-			sourceTree = "<group>";
-		};
 		FA0B2AE820C7E93B006AB589 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +493,14 @@
 				FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		FA0B2AF120C8DEC5006AB589 /* checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B2AF220C8DEC5006AB589 /* Checkbox.swift */,
+			);
+			path = checkbox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -680,7 +679,6 @@
 				6C9B7C5E20BF1FF8002D5CEF /* RecordCell.swift in Sources */,
 				6CA8DBC520BAA5FD00A82DA5 /* ProcessInfoExtensions.swift in Sources */,
 				6CA8DBCA20BAA65A00A82DA5 /* Constant.swift in Sources */,
-				FA0B2AE720C797D6006AB589 /* Checkbox.swift in Sources */,
 				6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */,
 				6C479CB620B70A83001B2B2B /* ProviderDelegate.swift in Sources */,
 				FA0B2AEE20C7E93B006AB589 /* FullDateCollectionViewCell.swift in Sources */,
@@ -698,6 +696,7 @@
 				6CA8DBDE20BAB2B900A82DA5 /* UIViewControllerExtensions.swift in Sources */,
 				6C8B78AF20BAFEB600C43518 /* LoginViewController.swift in Sources */,
 				6CA8DBD220BAAA8F00A82DA5 /* ContactAPI.swift in Sources */,
+				FA0B2AF320C8DEC6006AB589 /* Checkbox.swift in Sources */,
 				6C9B7C5920BF1BBF002D5CEF /* RecordListViewController.swift in Sources */,
 				6CA8DBB120BAA34200A82DA5 /* _StateMachine.swift in Sources */,
 				6CA8DBE720BAB69900A82DA5 /* BaseCollectionViewCell.swift in Sources */,
