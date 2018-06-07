@@ -11,11 +11,17 @@ import UIKit
 class RecordCell: BaseTableViewCell {
 
     @IBOutlet weak var dateLbl: UILabel!
-    @IBOutlet weak var noLbl: UILabel!
+    @IBOutlet weak var dateCallLbl: UILabel!
+    @IBOutlet weak var levelLbl: UILabel!
+    
+    
+    private var isPlaying = true
     
     private var didTapPlay: (() -> ())?
     
     @IBAction func didTapPlay(_ sender: Any) {
+        isPlaying = !isPlaying
+//        mediaBtn.setTitle(isPlaying ? "Play" : "Pause", for: .normal)
         didTapPlay?()
     }
     
@@ -25,8 +31,8 @@ class RecordCell: BaseTableViewCell {
     }
 
     func updateWith(historyCall: HistoryCall, index: Int, action: @escaping (() -> ())) {
-        dateLbl.text = historyCall.startTime
-        noLbl.text = index.description
+        dateCallLbl.text = convertDate(date: historyCall.startTime, type: 1)
+        dateLbl.text = convertDate(date: historyCall.startTime, type: 2)
         didTapPlay = action
     }
 }

@@ -20,5 +20,6 @@ target 'CROSA' do
     pod 'AlamofireObjectMapper', '~> 5.0'
     pod 'SwiftyJSON', '~> 4.0'
     pod 'PopupDialog', '~> 0.7'
-    
+    pod 'SwiftySound'
+pod 'SwiftyPickerPopover'    
 end

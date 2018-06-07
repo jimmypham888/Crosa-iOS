@@ -7,7 +7,7 @@
 //
 
 import ObjectMapper
-
+import SwiftyJSON
 class Contact: ImmutableMappable {
     
     let id: Int
@@ -20,6 +20,7 @@ class Contact: ImmutableMappable {
     let idStatusCall: Int
     let status: Int
     let currentLevel: Int
+    let dateLastCall: String?
     
     required init(map: Map) throws {
         id = try map.value("id")
@@ -32,10 +33,24 @@ class Contact: ImmutableMappable {
         idStatusCall = try map.value("id_status_call")
         status = try map.value("status")
         currentLevel = try map.value("current_level")
+        dateLastCall = try? map.value("last_call")
+        
     }
     
     static func get(id: Int, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
         ContactAPI.get(id: id)
+            .success { success($0) }
+            .failure { _ in }
+    }
+    
+    static func getPending(id: String, level: String, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
+        ContactAPI.getPending(id: id, level: level)
+            .success { success($0) }
+            .failure { _ in }
+    }
+    
+    static func getStock(id: String, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
+        ContactAPI.getStock(id: id)
             .success { success($0) }
             .failure { _ in }
     }
@@ -45,5 +60,39 @@ class Contact: ImmutableMappable {
         ContactAPI.get(phoneNumber: phone)
             .success { success($0) }
             .failure { _ in }
+    }
+    
+    func updateContact(id: String, name: String, email: String,
+                       success: @escaping (JSON) -> Void,
+                       failure: @escaping (String) -> Void) {
+        ContactAPI.update(id: id, name: name, email: email)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+    }
+    
+    func updateCall(id: String, name: String, email: String, level:String, callBackTime: String,
+                       success: @escaping (JSON) -> Void,
+                       failure: @escaping (String) -> Void) {
+        ContactAPI.updateFull(id: id, name: name, email: email, level: level, callBackTime: callBackTime)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
     }
 }

@@ -12,10 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactViewController" customModule="CROSA" customModuleProvider="target">
             <connections>
+                <outlet property="contactAmount" destination="bcZ-Vj-jDZ" id="L52-H8-h5D"/>
                 <outlet property="contactList" destination="FK1-1t-wPO" id="1Re-Yh-KOa"/>
                 <outlet property="leftBtn" destination="rAT-Sp-T9r" id="rGh-b5-L5r"/>
                 <outlet property="searchBar" destination="w67-OV-uWg" id="O1W-G7-75t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewTitle" destination="7bi-mR-KOM" id="HXj-4B-rJl"/>
                 <outlet property="wrapperView" destination="PbZ-Z8-ZAp" id="z8S-Ur-jiM"/>
             </connections>
         </placeholder>
@@ -43,18 +45,30 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh sách contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bi-mR-KOM">
-                                    <rect key="frame" x="115.5" y="12" width="143.5" height="21"/>
+                                    <rect key="frame" x="116" y="12" width="144" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcZ-Vj-jDZ">
+                                    <rect key="frame" x="342" y="10" width="25" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="6AG-F3-EPh"/>
+                                        <constraint firstAttribute="width" constant="25" id="Xj9-Qg-6YQ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="bcZ-Vj-jDZ" firstAttribute="top" secondItem="rAT-Sp-T9r" secondAttribute="top" id="6oI-vp-YmR"/>
                                 <constraint firstItem="rAT-Sp-T9r" firstAttribute="centerY" secondItem="qvq-G6-2VW" secondAttribute="centerY" id="8Zx-M1-svy"/>
                                 <constraint firstItem="7bi-mR-KOM" firstAttribute="centerX" secondItem="qvq-G6-2VW" secondAttribute="centerX" id="K2k-or-Gbh"/>
                                 <constraint firstAttribute="height" constant="44" id="wkf-Im-9Bs"/>
                                 <constraint firstItem="7bi-mR-KOM" firstAttribute="centerY" secondItem="qvq-G6-2VW" secondAttribute="centerY" id="x4K-BQ-G5i"/>
+                                <constraint firstAttribute="trailing" secondItem="bcZ-Vj-jDZ" secondAttribute="trailing" constant="8" id="yjl-cL-vho"/>
                                 <constraint firstItem="rAT-Sp-T9r" firstAttribute="leading" secondItem="qvq-G6-2VW" secondAttribute="leading" constant="16" id="zAm-z6-zs1"/>
                             </constraints>
                         </view>

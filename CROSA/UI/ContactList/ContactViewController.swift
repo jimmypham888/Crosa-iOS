@@ -16,6 +16,8 @@ class ContactViewController: BaseViewController {
     @IBOutlet weak var leftBtn: UIButton!
     @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var contactList: UITableView!
+    @IBOutlet weak var viewTitle: UILabel!
+    @IBOutlet weak var contactAmount: UILabel!
     
     @IBAction func didTapBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -30,9 +32,10 @@ class ContactViewController: BaseViewController {
     
     
     let contactId: Int
-    
-    init(contactId: Int) {
+    let type: Int
+    init(contactId: Int, type: Int) {
         self.contactId = contactId
+        self.type = type
         super.init()
     }
     
@@ -47,6 +50,11 @@ class ContactViewController: BaseViewController {
         remakeWrapperView(wrapperView)
         configContactList(contactList)
         configSearchBar(searchBar)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadContact()
     }
     
@@ -81,15 +89,41 @@ class ContactViewController: BaseViewController {
     
     private func loadContact() {
         SVProgressHUD.show()
-        Contact.get(id: contactId, success: { (contacts) in
-            SVProgressHUD.dismiss()
-            self.contacts = contacts
-            self.filterContacts = contacts
-            self.contactList.reloadData()
-        }) {
-            SVProgressHUD.dismiss()
-            self.errorServer(content: $0)
+        if (type == 0){
+            Contact.getPending(id: contactId.description, level: "8", success: { (contacts) in
+                self.getDataToTable(contacts: contacts)
+                self.viewTitle.text = "Danh sách phải gọi"
+                
+            }) {
+                SVProgressHUD.dismiss()
+                self.errorServer(content: $0)
+            }
+        }else if (type == 1){
+            Contact.getStock(id: contactId.description, success: { (contacts) in
+                self.getDataToTable(contacts: contacts)
+                self.viewTitle.text = "Danh sách tồn"
+            }) {
+                SVProgressHUD.dismiss()
+                self.errorServer(content: $0)
+            }
+        }else{
+            Contact.get(id: contactId, success: { (contacts) in
+                self.getDataToTable(contacts: contacts)
+                self.viewTitle.text = "Tất cả"
+            }) {
+                SVProgressHUD.dismiss()
+                self.errorServer(content: $0)
+            }
         }
+        
+    }
+    
+    private func getDataToTable(contacts :[Contact]){
+        SVProgressHUD.dismiss()
+        self.contacts = contacts
+        self.filterContacts = contacts
+        self.contactList.reloadData()
+        self.contactAmount.text = contacts.count.description
     }
     
     private func navigateContactDetail(contact: Contact) {

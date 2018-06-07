@@ -50,7 +50,7 @@ class AbstractAPI {
     static private let userAgent: String = ""
     
     class func createJSONTask(_ url: String,
-                              method: HTTPMethod = .get,
+                              method: HTTPMethod = .post,
                               parameters: Parameters? = nil,
                               encoding: ParameterEncoding = JSONEncoding.default,
                               headers: HTTPHeaders = createHeaders()) -> AlamofireJsonTask {

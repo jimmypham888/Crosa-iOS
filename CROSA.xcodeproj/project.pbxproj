@@ -69,6 +69,11 @@
 		6CE0FFAC20B65A320026BC59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE0FFAB20B65A320026BC59 /* AppDelegate.swift */; };
 		6CE0FFB320B65A340026BC59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB220B65A340026BC59 /* Assets.xcassets */; };
 		6CE0FFB620B65A340026BC59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CE0FFB420B65A340026BC59 /* LaunchScreen.storyboard */; };
+		FA0B2AE720C797D6006AB589 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AE620C797D6006AB589 /* Checkbox.swift */; };
+		FA0B2AED20C7E93B006AB589 /* StepCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AE920C7E93B006AB589 /* StepCollectionViewFlowLayout.swift */; };
+		FA0B2AEE20C7E93B006AB589 /* FullDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEA20C7E93B006AB589 /* FullDateCollectionViewCell.swift */; };
+		FA0B2AEF20C7E93B006AB589 /* DateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEB20C7E93B006AB589 /* DateTimePicker.swift */; };
+		FA0B2AF020C7E93B006AB589 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +144,11 @@
 		6CE0FFB720B65A340026BC59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7205D19B3F2585EB73829010 /* Pods-CROSA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CROSA.release.xcconfig"; path = "Pods/Target Support Files/Pods-CROSA/Pods-CROSA.release.xcconfig"; sourceTree = "<group>"; };
 		B6818358FB8410F1B7D3D41D /* Pods-CROSA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CROSA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CROSA/Pods-CROSA.debug.xcconfig"; sourceTree = "<group>"; };
+		FA0B2AE620C797D6006AB589 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		FA0B2AE920C7E93B006AB589 /* StepCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		FA0B2AEA20C7E93B006AB589 /* FullDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		FA0B2AEB20C7E93B006AB589 /* DateTimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimePicker.swift; sourceTree = "<group>"; };
+		FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +460,8 @@
 		6CE0FFAA20B65A320026BC59 /* CROSA */ = {
 			isa = PBXGroup;
 			children = (
+				FA0B2AE820C7E93B006AB589 /* Source */,
+				FA0B2AE520C797D6006AB589 /* checkbox */,
 				6C543EB420BBF72E0096B287 /* Demo */,
 				6CA8DBC820BAA64500A82DA5 /* Common */,
 				6CA8DBB620BAA53F00A82DA5 /* Extensions */,
@@ -470,6 +482,26 @@
 				7205D19B3F2585EB73829010 /* Pods-CROSA.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA0B2AE520C797D6006AB589 /* checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B2AE620C797D6006AB589 /* Checkbox.swift */,
+			);
+			name = checkbox;
+			path = "../../SimpleCheckbox-master/checkbox";
+			sourceTree = "<group>";
+		};
+		FA0B2AE820C7E93B006AB589 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B2AE920C7E93B006AB589 /* StepCollectionViewFlowLayout.swift */,
+				FA0B2AEA20C7E93B006AB589 /* FullDateCollectionViewCell.swift */,
+				FA0B2AEB20C7E93B006AB589 /* DateTimePicker.swift */,
+				FA0B2AEC20C7E93B006AB589 /* DateCollectionViewCell.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,6 +628,8 @@
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyPickerPopover/SwiftyPickerPopover.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
 				"${BUILT_PRODUCTS_DIR}/XCGLogger/XCGLogger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -614,6 +648,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPickerPopover.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCGLogger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,7 +666,9 @@
 			files = (
 				6C353F9620B921580088E214 /* CallKitDemoViewController.swift in Sources */,
 				6CA8DBBB20BAA54B00A82DA5 /* ReuseableView.swift in Sources */,
+				FA0B2AEF20C7E93B006AB589 /* DateTimePicker.swift in Sources */,
 				6C1424C520B9AC4F0055E5A3 /* Call.swift in Sources */,
+				FA0B2AF020C7E93B006AB589 /* DateCollectionViewCell.swift in Sources */,
 				6CA8DBB420BAA34200A82DA5 /* SwiftTask.swift in Sources */,
 				6CA8DBC120BAA5CB00A82DA5 /* UITableViewExtensions.swift in Sources */,
 				6CA8DBDB20BAADF800A82DA5 /* ContactViewController.swift in Sources */,
@@ -638,11 +676,14 @@
 				6C8B46B120B9A7C10098EDBE /* CallManager.swift in Sources */,
 				6CA8DBE920BABE8800A82DA5 /* BaseNavigationController.swift in Sources */,
 				6CA8DBBA20BAA54B00A82DA5 /* NibLoadableView.swift in Sources */,
+				FA0B2AED20C7E93B006AB589 /* StepCollectionViewFlowLayout.swift in Sources */,
 				6C9B7C5E20BF1FF8002D5CEF /* RecordCell.swift in Sources */,
 				6CA8DBC520BAA5FD00A82DA5 /* ProcessInfoExtensions.swift in Sources */,
 				6CA8DBCA20BAA65A00A82DA5 /* Constant.swift in Sources */,
+				FA0B2AE720C797D6006AB589 /* Checkbox.swift in Sources */,
 				6C7B635020B6939D008821F3 /* StringeeViewController.swift in Sources */,
 				6C479CB620B70A83001B2B2B /* ProviderDelegate.swift in Sources */,
+				FA0B2AEE20C7E93B006AB589 /* FullDateCollectionViewCell.swift in Sources */,
 				6CA8DBD020BAA7C700A82DA5 /* Contact.swift in Sources */,
 				6CA8DBD820BAAD5700A82DA5 /* BaseViewController.swift in Sources */,
 				6CA8DBF220BAC7F800A82DA5 /* ContactTableViewCell.swift in Sources */,
@@ -807,7 +848,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pham Anh (8AC84J5A86)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tung Truong (JPJY4BTL7A)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q8WX82C9SS;
 				ENABLE_BITCODE = NO;
@@ -819,7 +860,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = vn.topica.crosa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24999460-1050-48e4-a67b-8d6e7f3c550e";
+				PROVISIONING_PROFILE = "54a70abd-7fec-4c76-bf22-0e124a5d5213";
 				PROVISIONING_PROFILE_SPECIFIER = "CROSA Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "CROSA/Supporting Files/CROSA-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

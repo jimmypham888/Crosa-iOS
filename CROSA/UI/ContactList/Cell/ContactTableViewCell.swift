@@ -16,17 +16,27 @@ class ContactTableViewCell: BaseTableViewCell {
     @IBOutlet weak var telLbl: UILabel!
     @IBOutlet weak var emaillbl: UILabel!
     @IBOutlet weak var levelLbl: UILabel!
+    @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var statusLbl: UILabel!
     
     @IBAction func didTap(_ sender: UIButton) {
         actionHandle?()
     }
     
     func updateWithContact(_ contact: Contact, index: Int, actionHandle: @escaping (() -> ())) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM"
         numberLbl.text = index.description
         nameLbl.text = contact.name
         telLbl.text = contact.phone
         emaillbl.text = contact.email
         levelLbl.text = "L\(contact.currentLevel)"
+        if (contact.dateLastCall != nil){
+            dateLbl.text = convertDate(date: contact.dateLastCall!, type: 0)
+        }
+        
+       
+        
         self.actionHandle = actionHandle
     }
 

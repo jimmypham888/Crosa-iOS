@@ -17,10 +17,45 @@ class ContactAPI: AbstractAPI {
         return createModelArrayTask(API.listContact, parameters: params)
     }
     
+    static func getPending(id: String, level: String) -> AlamofireImmutableModelArrayTask<Contact>.T {
+        let params: Parameters = [
+            "id_user_tvts": id,
+            "current_level": level
+        ]
+        return createModelArrayTask(API.pendingContact, parameters: params)
+    }
+    
+    static func getStock(id: String) -> AlamofireImmutableModelArrayTask<Contact>.T {
+        let params: Parameters = [
+            "id_user_tvts": id
+        ]
+        return createModelArrayTask(API.stockContact, parameters: params)
+    }
+    
     static func get(phoneNumber: String) -> AlamofireImmutableModelArrayTask<HistoryCall>.T {
         let params: Parameters = [
             "mobile_phone": phoneNumber
         ]
         return createModelArrayTask(API.getAllHistoryCall, parameters: params)
+    }
+    
+    static func update(id: String, name: String, email:String) -> AlamofireJsonTask {
+        let params: Parameters = [
+            "id": id,
+            "name": name,
+            "email": email
+        ]
+        return createJSONTask(API.updateContact, parameters: params)
+    }
+    
+    static func updateFull(id: String, name: String, email:String, level:String, callBackTime: String) -> AlamofireJsonTask {
+        let params: Parameters = [
+            "id": id,
+            "name": name,
+            "email": email,
+            "current_level": level,
+            "call_schedule": callBackTime
+        ]
+        return createJSONTask(API.updateContact, parameters: params)
     }
 }

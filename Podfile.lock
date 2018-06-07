@@ -22,6 +22,8 @@ PODS:
   - Stringee (1.2.6)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
+  - SwiftyPickerPopover (6.5.2)
+  - SwiftySound (1.0.0)
   - XCGLogger (6.0.2):
     - XCGLogger/Core (= 6.0.2)
   - XCGLogger/Core (6.0.2):
@@ -41,6 +43,8 @@ DEPENDENCIES:
   - Stringee
   - SVProgressHUD
   - SwiftyJSON (~> 4.0)
+  - SwiftyPickerPopover
+  - SwiftySound
   - XCGLogger
 
 SPEC REPOS:
@@ -60,6 +64,8 @@ SPEC REPOS:
     - Stringee
     - SVProgressHUD
     - SwiftyJSON
+    - SwiftyPickerPopover
+    - SwiftySound
     - XCGLogger
 
 SPEC CHECKSUMS:
@@ -78,8 +84,10 @@ SPEC CHECKSUMS:
   Stringee: 722c2baf1f0fc11a018fca2118a39c60b028f798
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SwiftyPickerPopover: b0a41b6e5d4cd9d294beb047c7294b6ee0c07b90
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
   XCGLogger: c9601cae9a8912de34a58666ba931ed3d624dd31
 
-PODFILE CHECKSUM: 5ebba17fa4de6aeab3d3b7594b86f01040e16570
+PODFILE CHECKSUM: 51ad852be7209d85f8a8800a37f2e09027618324
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

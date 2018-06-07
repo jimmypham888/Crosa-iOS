@@ -26,4 +26,9 @@ extension String {
         let filtered = inputString.joined(separator: "")
         return self == filtered
     }
+    
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
 }

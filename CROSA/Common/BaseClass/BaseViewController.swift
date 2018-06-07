@@ -41,6 +41,25 @@ class BaseViewController: UIViewController {
         message(content: content, title: "Lỗi")
     }
     
+    internal func successServer(content: String) {
+        message(content: content, title: "Thành công")
+    }
+    
+    internal func convertDate(date: String) -> String{
+        var stringDate = ""
+        if (date == ""){
+            stringDate = "--/--"
+        }else{
+            let dateString = date
+            let dateStringArr = dateString.components(separatedBy: " ")
+            let day = dateStringArr[0]
+            let dateArr = day.components(separatedBy: "-")
+            stringDate = dateArr[2] + "/" + dateArr[1]
+        }
+        return stringDate
+        
+    }
+    
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }

@@ -9,16 +9,24 @@
 import UIKit
 import Alamofire
 import SVProgressHUD
+import SwiftySound
 
 class RecordListViewController: BaseViewController {
-
-    @IBOutlet weak var recordList: UITableView!
     
-    private let historyCalls: [HistoryCall]
-    private var player: AVPlayer?
+    private let historyCall: HistoryCall
+    private var player: Sound!
+    private var isPlayingCurrent = false
+    private var currentIndex:Int = 0
     
-    init(record: [HistoryCall]) {
-        historyCalls = record
+    @IBOutlet weak var callDateLbl: UITextField!
+    @IBOutlet weak var callScheduleLbl: UITextField!
+    @IBOutlet weak var levelLbl: UITextField!
+    @IBOutlet weak var contentTv: UITextView!
+    @IBOutlet weak var mediaButton: UIButton!
+    
+    
+    init(record: HistoryCall) {
+        historyCall = record
         super.init()
     }
     
@@ -28,37 +36,56 @@ class RecordListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        recordList.dataSource = self
-        recordList.registerCell(type: RecordCell.self)
-        recordList.separatorStyle = .none
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SVProgressHUD.dismiss()
+        updateView()
+        startDownload(audioUrl: historyCall.linkDownRecord)
+    }
+    
+    func updateView() {
+        callDateLbl.text = historyCall.startTime
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(player.playing){
+            player.stop()
+        }
+        isPlayingCurrent = false
+    }
+    
+    @IBAction func playRecord(_ sender: UIButton) {
+        
+        if (isPlayingCurrent == true){
+            pause()
+            mediaButton.setTitle("Play", for: .normal)
+        }else{
+            play()
+            mediaButton.setTitle("Pause", for: .normal)
+        }
+        isPlayingCurrent = !isPlayingCurrent
+    }
 }
 
-extension RecordListViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyCalls.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(type: RecordCell.self, for: indexPath)
-        let historyCall = historyCalls[indexPath.row]
-        cell.updateWith(historyCall: historyCall, index: indexPath.row + 1) {
-            self.startDownload(audioUrl: historyCall.linkDownRecord)
-        }
-        return cell
-    }
-}
 
 extension RecordListViewController {
-    func play(urlString: URL) {
-        player = AVPlayer(url: urlString)
-        player!.volume = 1.0
-        player!.play()
+    func play() {
+        
+        guard let player = player else { return }
+        if !player.resume() {
+            player.play(numberOfLoops: 0)
+        }
+
     }
+    
+    func pause() {
+        player.pause()
+    }
+    
     
     func startDownload(audioUrl: String) -> Void {
         
@@ -75,7 +102,9 @@ extension RecordListViewController {
             .responseData { (data) in
                 SVProgressHUD.dismiss()
                 if let destinationUrl = data.destinationURL {
-                    self.play(urlString: destinationUrl)
+                    self.player = Sound(url: destinationUrl)
+                    self.player.prepare()
+                    self.player!.volume = 1.0
                 } else {
                     self.errorServer(content: "Network error!")
                 }
