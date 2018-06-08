@@ -21,6 +21,7 @@ class Contact: ImmutableMappable {
     let status: Int
     let currentLevel: Int
     let dateLastCall: String?
+//    let dateLastCallDate: Date
     
     required init(map: Map) throws {
         id = try map.value("id")
@@ -34,7 +35,7 @@ class Contact: ImmutableMappable {
         status = try map.value("status")
         currentLevel = try map.value("current_level")
         dateLastCall = try? map.value("last_call")
-        
+       
     }
     
     static func get(id: Int, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
@@ -79,10 +80,10 @@ class Contact: ImmutableMappable {
         }
     }
     
-    func updateCall(id: String, name: String, email: String, level:String, callBackTime: String,
+    func updateCall(id: String, name: String, email: String, level:String, callBackTime: String, comment: String,
                        success: @escaping (JSON) -> Void,
                        failure: @escaping (String) -> Void) {
-        ContactAPI.updateFull(id: id, name: name, email: email, level: level, callBackTime: callBackTime)
+        ContactAPI.updateFull(id: id, name: name, email: email, level: level, callBackTime: callBackTime, comment: comment)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {

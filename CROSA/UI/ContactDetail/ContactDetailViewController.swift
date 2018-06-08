@@ -10,6 +10,8 @@ import UIKit
 import SVProgressHUD
 import PopupDialog
 import SwiftyPickerPopover
+import Alamofire
+import MessageUI
 
 class ContactDetailViewController: BaseViewController {
     
@@ -59,7 +61,8 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var checkBoxView: UIView!
     
     @IBOutlet weak var checkBoxView2: UIView!
-    @IBOutlet weak var dateTestLbl: UILabel!
+    @IBOutlet weak var checkBoxView3: UIView!
+    
     @IBOutlet weak var teacherTestLbl: UILabel!
     @IBOutlet weak var noteTestLbl: UILabel!
     
@@ -114,6 +117,7 @@ class ContactDetailViewController: BaseViewController {
         }) {
             self.callState.text = "Kết thúc cuộc gọi"
             self.isCalling = false
+            
         }
     }
     
@@ -129,13 +133,14 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        levelTf.keyboardType = UIKeyboardType.numberPad
+        //        levelTf.keyboardType = UIKeyboardType.numberPad
+        self.setEndEditing()
         remakeWrapperView(wrapperView)
         updateView()
         setView()
         historyCalls = []
         
-        let attributeString = NSMutableAttributedString(string: "https://www.google.com/convert",
+        let attributeString = NSMutableAttributedString(string: "https://www.google.com/",
                                                         attributes: yourAttributes)
         SBLink.setAttributedTitle(attributeString, for: .normal)
         
@@ -144,7 +149,7 @@ class ContactDetailViewController: BaseViewController {
         
         tableViewHistory.dataSource = self
         tableViewHistory.delegate = self
-
+        
         tableViewHistory.registerCell(type: RecordCell.self)
         tableViewHistory.separatorStyle = .none
         
@@ -152,7 +157,7 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       updateTable()
+        updateTable()
     }
     
     func updateTable() {
@@ -160,7 +165,7 @@ class ContactDetailViewController: BaseViewController {
         contact.getRecord(success: { (historyCall) in
             SVProgressHUD.dismiss()
             if historyCall.count == 0 {
-//                self.errorServer(content: "Không có dữ liệu ghi âm cuộc gọi!")
+                //                self.errorServer(content: "Không có dữ liệu ghi âm cuộc gọi!")
             } else {
                 self.historyCalls = historyCall
                 self.tableViewHistory.reloadData()
@@ -204,6 +209,17 @@ class ContactDetailViewController: BaseViewController {
             print("square 2 checkbox value change: \(value)")
         }
         checkBoxView2.addSubview(squareBox2)
+        
+        let squareBox3 = Checkbox(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        squareBox3.tintColor = .black
+        squareBox3.borderStyle = .square
+        squareBox3.checkmarkStyle = .square
+        squareBox3.uncheckedBorderColor = .lightGray
+        squareBox3.borderWidth = 1
+        squareBox3.valueChanged = { (value) in
+            print("square 3 checkbox value change: \(value)")
+        }
+        checkBoxView3.addSubview(squareBox3)
     }
     
     @IBAction func didTapUpdate(_ sender: UIButton) {
@@ -216,7 +232,7 @@ class ContactDetailViewController: BaseViewController {
             SVProgressHUD.showError(withStatus: "Emal không được để trống!")
             return
         }
-     
+        
         SVProgressHUD.show()
         contact.updateContact(id: contact.id.description,
                               name: contactName, email: contactEmail,
@@ -239,7 +255,7 @@ class ContactDetailViewController: BaseViewController {
         case 1:
             containerView.isHidden = true
             containerView2.isHidden = false
-            
+        //            updateTable()
         default:
             break;
         }
@@ -288,29 +304,29 @@ class ContactDetailViewController: BaseViewController {
     }
     
     func timePicker(type: Int){
-        timePickertype = type
-        let min = Date().addingTimeInterval(-60 * 60 * 24 * 4)
-        let max = Date().addingTimeInterval(60 * 60 * 24 * 30)
-        let picker = DateTimePicker.show(selected: Date(), minimumDate: min, maximumDate: max)
-        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
-        picker.highlightColor = UIColor.orange
-        picker.darkColor = UIColor.darkGray
-        picker.doneButtonTitle = "Đặt lịch"
-        picker.doneBackgroundColor = UIColor.orange
-        picker.locale = Locale(identifier: "vi_VN")
-        
-        picker.todayButtonTitle = "Hôm nay"
-        picker.is12HourFormat = true
-        picker.dateFormat = "hh:mm aa dd/MM/YYYY"
-        //        picker.isTimePickerOnly = true
-        picker.includeMonth = false // if true the month shows at top
-        picker.completionHandler = { date in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "hh:mm aa dd/MM/YYYY"
-            self.title = formatter.string(from: date)
-        }
-        picker.delegate = self
-        self.picker = picker
+//        timePickertype = type
+//        let min = Date().addingTimeInterval(-60 * 60 * 24 * 4)
+//        let max = Date().addingTimeInterval(60 * 60 * 24 * 30)
+//        let picker = DateTimePicker.show(selected: Date(), minimumDate: min, maximumDate: max)
+//        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
+//        picker.highlightColor = UIColor.orange
+//        picker.darkColor = UIColor.darkGray
+//        picker.doneButtonTitle = "Đặt lịch"
+//        picker.doneBackgroundColor = UIColor.orange
+//        picker.locale = Locale(identifier: "vi_VN")
+//
+//        picker.todayButtonTitle = "Hôm nay"
+//        picker.is12HourFormat = true
+//        picker.dateFormat = "hh:mm aa dd/MM/YYYY"
+//        //        picker.isTimePickerOnly = true
+//        picker.includeMonth = false // if true the month shows at top
+//        picker.completionHandler = { date in
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "hh:mm aa dd/MM/YYYY"
+//            self.title = formatter.string(from: date)
+//        }
+//        picker.delegate = self
+//        self.picker = picker
     }
     
     @IBAction func selectedSB(_ sender: UIButton) {
@@ -321,16 +337,52 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func openHyperlink(_ sender: UIButton) {
-        openUrl(urlStr: "https://www.google.com/")
+        downloadAndSendMail(urlString: "https://www.antennahouse.com/XSLsample/pdf/sample-link_1.pdf")
     }
     
-    func openUrl(urlStr:String!) {
-        
-        if let url = NSURL(string:urlStr) {
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+    func downloadAndSendMail(urlString:String){
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL:NSURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as NSURL
+            print("***documentURL: ",documentsURL)
+            let PDF_name : String = "sample-link_1"
+            let fileURL = documentsURL.appendingPathComponent(PDF_name)
+            print("***fileURL: ",fileURL)
+            return (fileURL!,[.removePreviousFile, .createIntermediateDirectories])
         }
         
+        Alamofire.download(urlString, to: destination).downloadProgress(closure: { (prog) in
+        }).response { response in
+            if response.error == nil, let filePath = response.destinationURL?.path {
+                print("File Path: ",filePath)
+                if( MFMailComposeViewController.canSendMail() ) {
+                    print("Can send email.")
+                    
+                    let mailComposer = MFMailComposeViewController()
+                    mailComposer.mailComposeDelegate = self
+                    
+                    //Set the subject and message of the email
+                    mailComposer.setSubject("Have you heard a swift?")
+                    mailComposer.setMessageBody("This is what they sound like.", isHTML: false)
+                    
+                    if let fileData = NSData(contentsOfFile: filePath) {
+                        print("File data loaded.")
+                        mailComposer.addAttachmentData(fileData as Data, mimeType: "application/pdf", fileName: "sample-link_1")
+                    }
+                    self.present(mailComposer, animated: true, completion: nil)
+                }else {
+                    print("Cannot sent mail")
+                }
+            }
+        }
     }
+    
+    //    func openUrl(urlStr:String!) {
+    //
+    //        if let url = NSURL(string:urlStr) {
+    //            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+    //        }
+    //
+    //    }
     
     @IBAction func didTapCallSchedule(_ sender: UIButton) {
         timePicker(type: 1)
@@ -341,9 +393,9 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapUpdateCall(_ sender: UIButton) {
-        
+        self.updateTable()
     }
-
+    
     
 }
 
@@ -377,5 +429,32 @@ extension ContactDetailViewController: UITableViewDelegate{
         let historyCall = historyCalls[indexPath.row]
         showDetail(historyCalls: historyCall)
         SVProgressHUD.show()
+    }
+}
+
+extension ContactDetailViewController: MFMailComposeViewControllerDelegate{
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Swift.Error?) {
+        switch result.rawValue {
+        case MFMailComposeResult.cancelled.rawValue:
+            print("Mail cancelled")
+            controller.dismiss(animated: true, completion: nil)
+        case MFMailComposeResult.saved.rawValue:
+            print("Mail saved")
+            controller.dismiss(animated: true, completion: nil)
+        case MFMailComposeResult.sent.rawValue:
+            print("Mail sent")
+            controller.dismiss(animated: true, completion: nil)
+            successServer(content: "Gửi mail thành công")
+        case MFMailComposeResult.failed.rawValue:
+            print("Mail sent failure: %@", [error!.localizedDescription])
+            controller.dismiss(animated: true, completion: nil)
+            errorServer(content: "Lỗi gửi mail, vui long thử lại!")
+        default:
+            controller.dismiss(animated: true, completion: nil)
+            break
+            
+        }
     }
 }

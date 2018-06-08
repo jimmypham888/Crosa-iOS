@@ -18,7 +18,7 @@ class ContactViewController: BaseViewController {
     @IBOutlet weak var contactList: UITableView!
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var contactAmount: UILabel!
-    
+    var refreshControl: UIRefreshControl!
     @IBAction func didTapBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -63,6 +63,17 @@ class ContactViewController: BaseViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.registerCell(type: ContactTableViewCell.self)
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Kéo để tải lại")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: Any) {
+        //  your code to refresh tableView
+        loadContact()
+        contactList.reloadData()
+        refreshControl.endRefreshing()
     }
     
     private func configSearchBar(_ searchBar: UISearchBar) {
