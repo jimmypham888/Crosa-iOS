@@ -37,6 +37,7 @@ class ContactAPI: AbstractAPI {
             "mobile_phone": phoneNumber
         ]
         return createModelArrayTask(API.getAllHistoryCall, parameters: params)
+        
     }
     
     static func update(id: String, name: String, email:String) -> AlamofireJsonTask {

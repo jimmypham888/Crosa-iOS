@@ -294,6 +294,7 @@ extension AbstractAPI {
                 .responseArray(keyPath: keyPath, completionHandler: { (response: DataResponse<[T]>) in
                     if let value = response.value {
                         fulfill(value)
+                        
                     } else {
                         if let data = response.data {
                             log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)\njson: \n\(String(describing: try? JSON(data: data)))")
@@ -309,6 +310,7 @@ extension AbstractAPI {
         }
         
         return task
+        
     }
 }
 
