@@ -32,7 +32,13 @@ class RecordCell: BaseTableViewCell {
 
     func updateWith(historyCall: HistoryCall, index: Int, action: @escaping (() -> ())) {
         dateCallLbl.text = convertDate(date: historyCall.startTime, type: 1)
-        dateLbl.text = convertDate(date: historyCall.startTime, type: 2)
+        if (historyCall.call_schedule != nil){
+            dateLbl.text = convertDate(date: historyCall.call_schedule!, type: 2)
+        }
+        if (historyCall.current_level != nil){
+            levelLbl.text = historyCall.current_level
+        }
+        
         didTapPlay = action
     }
 }

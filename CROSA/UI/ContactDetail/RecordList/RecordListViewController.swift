@@ -48,6 +48,9 @@ class RecordListViewController: BaseViewController {
     
     func updateView() {
         callDateLbl.text = historyCall.startTime
+        callScheduleLbl.text = historyCall.call_schedule
+        levelLbl.text = historyCall.current_level
+        contentTv.text = historyCall.comment
     }
     
     override func viewWillDisappear(_ animated: Bool) {

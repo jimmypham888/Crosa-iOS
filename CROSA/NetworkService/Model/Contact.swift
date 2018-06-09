@@ -80,10 +80,10 @@ class Contact: ImmutableMappable {
         }
     }
     
-    func updateCall(id: String, name: String, email: String, level:String, callBackTime: String, comment: String,
+    func updateCall(id: String, name: String, email: String, level:String, call_id:String, callBackTime: String, comment: String,
                        success: @escaping (JSON) -> Void,
                        failure: @escaping (String) -> Void) {
-        ContactAPI.updateFull(id: id, name: name, email: email, level: level, callBackTime: callBackTime, comment: comment)
+        ContactAPI.updateFull(id: id, name: name, email: email, level: level, call_id: call_id, callBackTime: callBackTime, comment: comment)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {

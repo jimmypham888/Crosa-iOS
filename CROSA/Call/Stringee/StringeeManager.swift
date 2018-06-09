@@ -18,6 +18,7 @@ class StringeeManager: NSObject {
     private let callManager = CallManager()
     private let providerDelegate = ProviderDelegate()
     private var currentNumber: String?
+    public var callID:String?
     
     private var calling: (() -> ())?
     private var ringing: (() -> ())?
@@ -97,6 +98,8 @@ class StringeeManager: NSObject {
 
 extension StringeeManager: StringeeCallDelegate {
     func didChangeSignalingState(_ stringeeCall: StringeeCall!, signalingState: SignalingState, reason: String!, sipCode: Int32, sipReason: String!) {
+        print("call id----------\(stringeeCall.callId)")
+        callID = stringeeCall.callId
         guard let currentNumber = currentNumber else { return }
         switch signalingState {
         case .calling:

@@ -42,6 +42,7 @@ enum API {
     static let contactDetail = ""
     static let getAllHistoryCall = "getAllHistoryCall"
     static let updateContact = "updateContact"
+    static let updateHistoryCall = "updateHistoryCall"
 }
 
 let ACCESS_TOKEN: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InN0cmluZ2VlLWFwaTt2PTEifQ.eyJqdGkiOiJTS04yUGZBOFBKNnNucXJwMlRzVnV2ZHo0T2N4NDRiMzRPLTE1MjgxNzM1NzQiLCJpc3MiOiJTS04yUGZBOFBKNnNucXJwMlRzVnV2ZHo0T2N4NDRiMzRPIiwiZXhwIjoxNTI4NTMzNTc0LCJ1c2VySWQiOiJqaW1teSIsInJlc3RfYXBpIjp0cnVlLCJpYXQiOjE1MjgxNzM1NzR9.D86iTEmPw-LfNVgL577cQFQCLg7gw2R6SU3QkmS36mE"

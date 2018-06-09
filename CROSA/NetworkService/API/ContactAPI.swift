@@ -48,15 +48,16 @@ class ContactAPI: AbstractAPI {
         return createJSONTask(API.updateContact, parameters: params)
     }
     
-    static func updateFull(id: String, name: String, email:String, level:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
+    static func updateFull(id: String, name: String, email:String, level:String, call_id:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
         let params: Parameters = [
             "id": id,
             "name": name,
             "email": email,
             "current_level": level,
+            "call_id": call_id,
             "call_schedule": callBackTime,
-            "comment": comment
+            "comment": comment,
         ]
-        return createJSONTask(API.updateContact, parameters: params)
+        return createJSONTask(API.updateHistoryCall, parameters: params)
     }
 }

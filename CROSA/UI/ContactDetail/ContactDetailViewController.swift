@@ -23,6 +23,7 @@ class ContactDetailViewController: BaseViewController {
     
     var picker: DateTimePicker?
     var timePickertype: Int!
+    var callID: String!
     private var historyCalls: [HistoryCall]!
     @IBOutlet weak var wrapperView: UIView!
     
@@ -117,7 +118,7 @@ class ContactDetailViewController: BaseViewController {
         }) {
             self.callState.text = "Kết thúc cuộc gọi"
             self.isCalling = false
-            
+            self.callID = StringeeManager.shared.callID
         }
     }
     
@@ -304,29 +305,31 @@ class ContactDetailViewController: BaseViewController {
     }
     
     func timePicker(type: Int){
-//        timePickertype = type
-//        let min = Date().addingTimeInterval(-60 * 60 * 24 * 4)
-//        let max = Date().addingTimeInterval(60 * 60 * 24 * 30)
-//        let picker = DateTimePicker.show(selected: Date(), minimumDate: min, maximumDate: max)
-//        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
-//        picker.highlightColor = UIColor.orange
-//        picker.darkColor = UIColor.darkGray
-//        picker.doneButtonTitle = "Đặt lịch"
-//        picker.doneBackgroundColor = UIColor.orange
-//        picker.locale = Locale(identifier: "vi_VN")
-//
-//        picker.todayButtonTitle = "Hôm nay"
-//        picker.is12HourFormat = true
-//        picker.dateFormat = "hh:mm aa dd/MM/YYYY"
-//        //        picker.isTimePickerOnly = true
-//        picker.includeMonth = false // if true the month shows at top
-//        picker.completionHandler = { date in
-//            let formatter = DateFormatter()
+        timePickertype = type
+        let min = Date().addingTimeInterval(-60 * 60 * 24 * 4)
+        let max = Date().addingTimeInterval(60 * 60 * 24 * 30)
+        let picker = DateTimePicker.show(selected: Date(), minimumDate: min, maximumDate: max)
+        picker.timeInterval = DateTimePicker.MinuteInterval.thirty
+        picker.highlightColor = UIColor.orange
+        picker.darkColor = UIColor.darkGray
+        picker.doneButtonTitle = "Đặt lịch"
+        picker.doneBackgroundColor = UIColor.orange
+        picker.locale = Locale(identifier: "vi_VN")
+
+        picker.todayButtonTitle = "Hôm nay"
+        picker.is12HourFormat = true
+        picker.dateFormat = "YYYY/MM/dd HH:mm:ss"
+        //        picker.isTimePickerOnly = true
+        picker.includeMonth = false // if true the month shows at top
+        picker.completionHandler = { date in
+            let formatter = DateFormatter()
 //            formatter.dateFormat = "hh:mm aa dd/MM/YYYY"
-//            self.title = formatter.string(from: date)
-//        }
-//        picker.delegate = self
-//        self.picker = picker
+            formatter.dateFormat = "YYYY/MM/dd HH:mm:ss"
+
+            self.title = formatter.string(from: date)
+        }
+        picker.delegate = self
+        self.picker = picker
     }
     
     @IBAction func selectedSB(_ sender: UIButton) {
@@ -389,11 +392,65 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapChooseLevel(_ sender: UIButton) {
-        
+        let displayStringFor:((String?)->String?)? = { string in
+            if let s = string {
+                switch(s){
+                case "1":
+                    return "1"
+                case "2":
+                    return "2"
+                case "3":
+                    return "3"
+                default:
+                    return s
+                }
+            }
+            return nil
+        }
+        /// Create StringPickerPopover:
+        let p = StringPickerPopover(title: "Level", choices: ["1","2","3"])
+            .setDisplayStringFor(displayStringFor)
+            .setFont(UIFont.boldSystemFont(ofSize: 14))
+            .setFontColor(.blue)
+            .setValueChange(action: { _, _, selectedString in
+                print("current string: \(selectedString)")
+            })
+            .setDoneButton(
+                font: UIFont.boldSystemFont(ofSize: 16),
+                color: UIColor.blue,
+                action: { popover, selectedRow, selectedString in
+                    self.levelCallLbl.text = selectedString
+                    print("done row \(selectedRow) \(selectedString)")
+            })
+            .setCancelButton(action: {_, _, _ in
+                print("cancel") })
+        p.appear(originView: sender, baseViewController: self)
+        p.disappearAutomatically(after: 3.0, completion: { print("automatically hidden")} )
     }
     
     @IBAction func didTapUpdateCall(_ sender: UIButton) {
-        self.updateTable()
+        guard let contactName = nameTf.text, contactName != "" else {
+            SVProgressHUD.showError(withStatus: "Tên không được để trống!")
+            return
+        }
+        
+        guard let contactEmail = emailTf.text, contactEmail != "" else {
+            SVProgressHUD.showError(withStatus: "Emal không được để trống!")
+            return
+        }
+        
+        
+        SVProgressHUD.show()
+        contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: levelCallLbl.text!, call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text,
+                              success: { (json) in
+                                SVProgressHUD.dismiss()
+                                print(json)
+                                self.successServer(content: "Cập nhật thành công")
+        }) {
+            SVProgressHUD.dismiss()
+            self.errorServer(content: $0)
+        }
+//        self.updateTable()
     }
     
     
