@@ -105,6 +105,7 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var phoneTf: UITextField!
     @IBOutlet weak var emailTf: UITextField!
     @IBOutlet weak var callBtn: UIButton!
+    @IBOutlet weak var interviewDatePicker: UIButton!
     
     //Thong Tin L3 L6
     @IBOutlet weak var setSchedule: UIButton!
@@ -168,11 +169,14 @@ class ContactDetailViewController: BaseViewController {
             self.callState.text = "Kết thúc cuộc gọi"
             self.isCalling = false
             self.callID = StringeeManager.shared.callID
+            self.isCalled = true
         }
     }
     
     @IBAction func didTapBack(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+        if (isCalled == false){
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     private var isCalling: Bool = false {
@@ -183,6 +187,7 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setEndEditing()
         teacherLbl.text = "VN"
         SBLink.isEnabled = false
@@ -214,6 +219,7 @@ class ContactDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTable()
+        isCalled = false
     }
     
     func updateTable() {
@@ -251,13 +257,16 @@ class ContactDetailViewController: BaseViewController {
                     if (json["data"]["historyStatusChange"]["note"] != JSON.null){
                         self.noteTv.text = json["data"]["historyStatusChange"]["note"].description
                     }
-                    
+                    self.interviewDatePicker.isEnabled = false
                     self.canDownload = true
                 }else if (Int(json["status"].description)! == 1 && Int(json["data"]["interviewStatus"].description)! == 5) {
                     self.setSchedule.setTitle("Đặt", for: .normal)
+                    self.dateLbl.text = "--/--"
+                    self.interviewDatePicker.isEnabled = true
                     self.canDownload = false
                 }
             }else{
+                self.interviewDatePicker.isEnabled = true
                 self.setSchedule.setTitle("Đặt", for: .normal)
                 self.canDownload = false
             }
@@ -420,7 +429,7 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func selectedSB(_ sender: UIButton) {
-        pickerViewDialog(pickerview: pickerViewSB)
+        pickerViewDialog(pickerview: pickerViewSB, type: 0)
     }
     
     @IBAction func didTapOrderSB(_ sender: UIButton) {
@@ -493,15 +502,18 @@ class ContactDetailViewController: BaseViewController {
         vc.preferredContentSize = CGSize(width: 250,height: 300)
         datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: 250, height: 300))
         datePicker?.datePickerMode = UIDatePickerMode.dateAndTime
+        datePicker.locale = Locale(identifier: "vi_VN")
         vc.view.addSubview(datePicker)
         let editRadiusAlert = UIAlertController(title: "Lựa chọn ngày giờ", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
         editRadiusAlert.addAction(UIAlertAction(title: "Chọn", style: .default, handler: { (action: UIAlertAction!) in
-          self.view.endEditing(true)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
-            self.callScheduleLbl.text = String(self.datePicker.date.description.dropLast(9))
-            print("select call schedule \(self.callScheduleLbl.text)")
+          
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "dd/MM/yyyy"
+            self.callScheduleLbl.text = String(self.datePicker.date.description.dropLast(6))
+//            print("select call schedule \(self.datePicker.date.description)")
+            self.view.endEditing(true)
+//            print("select call schedule \(self.callScheduleLbl.text)")
         }))
         
         editRadiusAlert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -511,10 +523,10 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapChooseLevel(_ sender: UIButton) {
-        pickerViewDialog(pickerview: pickerViewLevel)
+        pickerViewDialog(pickerview: pickerViewLevel, type: 1)
     }
     
-    func pickerViewDialog(pickerview: UIPickerView) {
+    func pickerViewDialog(pickerview: UIPickerView, type: Int) {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
         pickerview.delegate = self
@@ -523,10 +535,14 @@ class ContactDetailViewController: BaseViewController {
         let editRadiusAlert = UIAlertController(title: "Lựa chọn", message: "", preferredStyle: UIAlertControllerStyle.alert)
         editRadiusAlert.setValue(vc, forKey: "contentViewController")
         editRadiusAlert.addAction(UIAlertAction(title: "Chọn", style: .default, handler: { (action: UIAlertAction!) in
-            self.sbType = Int(String((self.SBLbl.text?.dropLast(6))!))
-            
-            self.pickerLevel = 0
-            self.pickerSB = 0
+            if(type == 0){
+                self.SBLbl.text = self.arrSB[self.pickerSB]
+                self.sbType = Int(String((self.SBLbl.text?.dropLast(6))!))
+            }else{
+                self.levelCallLbl.text = self.arrLevel[self.pickerLevel]
+            }
+//            self.pickerLevel = 0
+//            self.pickerSB = 0
             self.view.endEditing(true)
         }))
         editRadiusAlert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -539,28 +555,38 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapUpdateCall(_ sender: UIButton) {
+        if(isCalled == true){
         guard let contactName = nameTf.text, contactName != "" else {
             SVProgressHUD.showError(withStatus: "Tên không được để trống!")
             return
         }
         
         guard let contactEmail = emailTf.text, contactEmail != "" else {
-            SVProgressHUD.showError(withStatus: "Emal không được để trống!")
+            SVProgressHUD.showError(withStatus: "Email không được để trống!")
             return
         }
         
+        guard let level = levelCallLbl.text, level != "" else {
+            SVProgressHUD.showError(withStatus: "Trạng thái không được để trống!")
+            return
+        }
         
         SVProgressHUD.show()
-        contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: levelCallLbl.text!, call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text,
+            contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text,
                               success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)
-                                self.successServer(content: "Cập nhật thành công")
+                                if(Int(json["status"].description) == 0){
+                                   self.successServer(content: "Cập nhật thành công")
+                                    self.updateTable()
+                                    self.isCalled = false
+                                }
         }) {
             SVProgressHUD.dismiss()
             self.errorServer(content: $0)
         }
-//        self.updateTable()
+        
+    }
     }
     
     @IBAction func didTapMakeSchedule(_ sender: UIButton) {
@@ -583,15 +609,15 @@ class ContactDetailViewController: BaseViewController {
     
 }
 
-extension ContactDetailViewController:DateTimePickerDelegate{
-    func dateTimePicker(_ picker: DateTimePicker, didSelectDate: Date) {
-        if (timePickertype == 0){
-            dateLbl.text = picker.selectedDateString
-            scheduleTest = picker.selectedDateString
-        }else{callScheduleLbl.text =  picker.selectedDateString}
-        
-    }
-}
+//extension ContactDetailViewController:DateTimePickerDelegate{
+//    func dateTimePicker(_ picker: DateTimePicker, didSelectDate: Date) {
+//        if (timePickertype == 0){
+//            dateLbl.text = picker.selectedDateString
+//            scheduleTest = picker.selectedDateString
+//        }else{callScheduleLbl.text =  picker.selectedDateString}
+//
+//    }
+//}
 
 extension ContactDetailViewController: UITableViewDataSource {
     
@@ -647,9 +673,10 @@ extension ContactDetailViewController: MFMailComposeViewControllerDelegate{
 extension ContactDetailViewController:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView == pickerViewSB){
-            SBLbl.text = arrSB[row]
+//            SBLbl.text = arrSB[row]
             pickerSB = row
         }else if(pickerView == pickerViewLevel){
+//            levelCallLbl.text = arrLevel[row]
             pickerLevel = row
         }else {
             pickerIndex = row

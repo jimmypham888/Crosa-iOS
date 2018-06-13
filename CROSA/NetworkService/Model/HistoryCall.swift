@@ -16,7 +16,7 @@ class HistoryCall: ImmutableMappable {
     let linkDownRecord: String
     let call_schedule: String?
     let comment: String?
-    let current_level: String?
+    let current_level: Int?
     
     required init(map: Map) throws {
         callId = try map.value("call_id")
@@ -26,6 +26,5 @@ class HistoryCall: ImmutableMappable {
         call_schedule = try? map.value("call_schedule")
         comment = try? map.value("comment")
         current_level = try? map.value("call_level")
-        print("LEVELLLLLL \(current_level)")
     }
 }

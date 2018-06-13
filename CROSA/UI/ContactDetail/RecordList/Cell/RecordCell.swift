@@ -36,7 +36,7 @@ class RecordCell: BaseTableViewCell {
             dateLbl.text = convertDate(date: historyCall.call_schedule!, type: 2)
         }
         if (historyCall.current_level != nil){
-            levelLbl.text = historyCall.current_level
+            levelLbl.text = "L\(historyCall.current_level?.description ?? "")"
         }
         
         didTapPlay = action

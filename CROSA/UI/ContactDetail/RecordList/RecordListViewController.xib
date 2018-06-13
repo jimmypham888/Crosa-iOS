@@ -12,11 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordListViewController" customModule="CROSA" customModuleProvider="target">
             <connections>
+                <outlet property="audioTimerLbl" destination="cgN-Q5-eX7" id="ogv-RJ-iAg"/>
                 <outlet property="callDateLbl" destination="jIH-Ai-Oy2" id="NzX-VZ-ISb"/>
                 <outlet property="callScheduleLbl" destination="kcH-6G-pbm" id="roz-0C-hVk"/>
                 <outlet property="contentTv" destination="7jC-Cu-WLF" id="atv-iH-tmy"/>
                 <outlet property="levelLbl" destination="ldu-re-0s6" id="ymS-am-SgW"/>
                 <outlet property="mediaButton" destination="aLz-Ih-ePv" id="rvI-lG-PLx"/>
+                <outlet property="timeSlider" destination="q70-GP-BVa" id="uZQ-9n-Rhw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,7 +37,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2f-BI-CvH">
-                            <rect key="frame" x="8" y="64.5" width="359" height="320"/>
+                            <rect key="frame" x="8" y="64.5" width="359" height="350"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ngày gọi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9O-Q3-k6L">
                                     <rect key="frame" x="8" y="24" width="68" height="21"/>
@@ -106,7 +108,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLz-Ih-ePv">
-                                    <rect key="frame" x="140" y="258" width="78" height="30"/>
+                                    <rect key="frame" x="140" y="270" width="78" height="30"/>
                                     <color key="backgroundColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="2q0-6H-bGt"/>
@@ -124,6 +126,26 @@
                                         <action selector="playRecord:" destination="-1" eventType="touchUpInside" id="bpe-qn-seF"/>
                                     </connections>
                                 </button>
+                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q70-GP-BVa">
+                                    <rect key="frame" x="19" y="308" width="292" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="timeSliderChangedWithSender:" destination="-1" eventType="valueChanged" id="34m-CF-IiT"/>
+                                        <action selector="timeSliderTouchDownWithSender:" destination="-1" eventType="valueChanged" id="qfb-2k-NhM"/>
+                                        <action selector="timeSliderTouchUpOutsideWithSender:" destination="-1" eventType="valueChanged" id="EAd-Il-Pyq"/>
+                                        <action selector="timeSliderTouchUpWithSender:" destination="-1" eventType="valueChanged" id="gHh-q9-klx"/>
+                                    </connections>
+                                </slider>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgN-Q5-eX7">
+                                    <rect key="frame" x="226" y="270" width="50" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="1QZ-hM-G59"/>
+                                        <constraint firstAttribute="width" constant="50" id="kqA-37-iCD"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.71372549019999998" green="0.71372549019999998" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -134,10 +156,12 @@
                                 <constraint firstItem="kcH-6G-pbm" firstAttribute="top" secondItem="jIH-Ai-Oy2" secondAttribute="bottom" constant="7" id="I7P-fc-DWt"/>
                                 <constraint firstAttribute="trailing" secondItem="kcH-6G-pbm" secondAttribute="trailing" constant="8" id="IH5-nt-baf"/>
                                 <constraint firstItem="aLz-Ih-ePv" firstAttribute="leading" secondItem="c2f-BI-CvH" secondAttribute="leading" constant="140" id="LE5-Jj-jgj"/>
-                                <constraint firstAttribute="bottom" secondItem="aLz-Ih-ePv" secondAttribute="bottom" constant="32" id="c6R-js-nZ6"/>
-                                <constraint firstAttribute="height" constant="320" id="egI-1l-lmm"/>
+                                <constraint firstAttribute="bottom" secondItem="aLz-Ih-ePv" secondAttribute="bottom" constant="50" id="c6R-js-nZ6"/>
+                                <constraint firstAttribute="height" constant="350" id="egI-1l-lmm"/>
                                 <constraint firstAttribute="trailing" secondItem="jIH-Ai-Oy2" secondAttribute="trailing" constant="8" id="ehR-8b-mLw"/>
                                 <constraint firstItem="7jC-Cu-WLF" firstAttribute="top" secondItem="ldu-re-0s6" secondAttribute="bottom" constant="23" id="ep8-XL-kdV"/>
+                                <constraint firstItem="cgN-Q5-eX7" firstAttribute="leading" secondItem="aLz-Ih-ePv" secondAttribute="trailing" constant="8" id="ntC-OV-KSP"/>
+                                <constraint firstItem="cgN-Q5-eX7" firstAttribute="top" secondItem="7jC-Cu-WLF" secondAttribute="bottom" constant="31" id="sWY-GU-nFy"/>
                             </constraints>
                         </view>
                     </subviews>

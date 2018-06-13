@@ -24,6 +24,7 @@
                 <outlet property="dateLbl" destination="olj-hK-7I0" id="0xl-jJ-66H"/>
                 <outlet property="dateTestScoreLbl" destination="6QJ-Oe-G0L" id="gRU-kX-xMj"/>
                 <outlet property="emailTf" destination="kNU-Bh-6a1" id="YL2-Sg-H0m"/>
+                <outlet property="interviewDatePicker" destination="ga4-HT-Sby" id="Gqh-zi-ca1"/>
                 <outlet property="levelCallLbl" destination="QrB-E0-gN7" id="Qhr-zI-K50"/>
                 <outlet property="levelInterviewLbl" destination="hDy-WD-AKL" id="fqv-og-gxB"/>
                 <outlet property="levelLbl" destination="qnM-KA-Lkv" id="PC9-9b-Ech"/>
