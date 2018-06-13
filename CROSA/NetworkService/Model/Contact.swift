@@ -185,5 +185,42 @@ class Contact: ImmutableMappable {
         }
     }
     
+    func bookAccount(id_contact: String,
+                    success: @escaping (JSON) -> Void,
+                    failure: @escaping (String) -> Void) {
+        CRMNativeAPI.bookAccount(id_contact: id_contact)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+        
+    }
+    
+    func getNative(id_contact: String,
+                     success: @escaping (JSON) -> Void,
+                     failure: @escaping (String) -> Void) {
+        CRMNativeAPI.getAccountNativeTest(id_contact: id_contact)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+        
+    }
+    
+    
 
 }

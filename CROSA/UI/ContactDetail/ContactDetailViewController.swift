@@ -242,7 +242,7 @@ class ContactDetailViewController: BaseViewController {
             
 //            print(json)
             if (json["data"]["interviewStatus"] != JSON.null){
-                if ((Int(json["status"].description)! == 0) || (Int(json["status"].description)! == 1 && Int(json["data"]["interviewStatus"].description)! == 2) ){
+                if ((Int(json["status"].description)! == 1) || (Int(json["status"].description)! == 0 && Int(json["data"]["interviewStatus"].description)! == 2) ){
                     self.setSchedule.setTitle("Huỷ", for: .normal)
                     var timerange = ""
                     for timeRange in self.timeRangeDictionary{
@@ -259,7 +259,7 @@ class ContactDetailViewController: BaseViewController {
                     }
                     self.interviewDatePicker.isEnabled = false
                     self.canDownload = true
-                }else if (Int(json["status"].description)! == 1 && Int(json["data"]["interviewStatus"].description)! == 5) {
+                }else if (Int(json["status"].description)! == 0 && Int(json["data"]["interviewStatus"].description)! == 5) {
                     self.setSchedule.setTitle("Đặt", for: .normal)
                     self.dateLbl.text = "--/--"
                     self.interviewDatePicker.isEnabled = true
@@ -313,9 +313,10 @@ class ContactDetailViewController: BaseViewController {
             print(json)
             if (json["msg"].description == "Schedule Success!"){
                 self.successServer(content: "Đặt lịch thành công")
-                self.setSchedule.setTitle("Huỷ", for: .normal)
+//                self.setSchedule.setTitle("Huỷ", for: .normal)
+                self.updateTable()
             }else{
-                self.successServer(content: json["msg"].description)
+                self.errorServer(content: json["msg"].description)
             }
 //            self.successServer(content: "Cập nhật thành công")
         }) {
@@ -334,6 +335,7 @@ class ContactDetailViewController: BaseViewController {
                 SVProgressHUD.dismiss()
                 print(json)
               self.successServer(content: "Huỷ lịch thành công")
+               self.updateTable()
             }) {
                 SVProgressHUD.dismiss()
                 self.errorServer(content: $0)
@@ -355,7 +357,7 @@ class ContactDetailViewController: BaseViewController {
         }
         
         guard let contactEmail = emailTf.text, contactEmail != "" else {
-            SVProgressHUD.showError(withStatus: "Emal không được để trống!")
+            SVProgressHUD.showError(withStatus: "Email không được để trống!")
             return
         }
         
@@ -465,7 +467,7 @@ class ContactDetailViewController: BaseViewController {
             print("***documentURL: ",documentsURL)
             let PDF_name : String = "Lộ trình học cho học viên \(self.contact.name)"
             let fileURL = documentsURL.appendingPathComponent(PDF_name)
-            print("***fileURL: ",fileURL)
+            print("***fileURL: ",fileURL!)
             return (fileURL!,[.removePreviousFile, .createIntermediateDirectories])
         }
         
@@ -510,8 +512,13 @@ class ContactDetailViewController: BaseViewController {
           
 //            let formatter = DateFormatter()
 //            formatter.dateFormat = "dd/MM/yyyy"
-            self.callScheduleLbl.text = String(self.datePicker.date.description.dropLast(6))
-//            print("select call schedule \(self.datePicker.date.description)")
+            let dateStringArr = self.datePicker.date.description.dropLast(6).components(separatedBy: " ")
+            let time = dateStringArr[1]
+            let timeArr = time.components(separatedBy: ":")
+            let hour = Int(timeArr[0].description)! + 7
+            let callScheduleTxt = dateStringArr[0] + " " + String(hour) + ":" + timeArr[1] + ":" + timeArr[2]
+            self.callScheduleLbl.text = callScheduleTxt
+            print("select call schedule \(self.datePicker.date.description)")
             self.view.endEditing(true)
 //            print("select call schedule \(self.callScheduleLbl.text)")
         }))
@@ -576,7 +583,7 @@ class ContactDetailViewController: BaseViewController {
                               success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)
-                                if(Int(json["status"].description) == 0){
+                                if(Int(json["status"].description) == 1){
                                    self.successServer(content: "Cập nhật thành công")
                                     self.updateTable()
                                     self.isCalled = false
@@ -595,14 +602,22 @@ class ContactDetailViewController: BaseViewController {
         }else if (sender.titleLabel?.text == "Huỷ"){
             cancelSchedule()
         }
-        updateTable()
-    }
     
-    @IBAction func didTapGetTestAcc(_ sender: UIButton) {
-        
     }
     
     @IBAction func didTapSendRequestTest(_ sender: UIButton) {
+        SVProgressHUD.show()
+        contact.bookAccount(id_contact: contact.id.description, success: { (json) in
+            SVProgressHUD.dismiss()
+            print(json)
+            self.teacherTestLbl.text = json["data"].arrayValue[0]["native_test_account"].description
+            self.noteTestLbl.text = json["data"].arrayValue[0]["password"].description
+//            self.successServer(content: "Huỷ lịch thành công")
+//            self.updateTable()
+        }) {
+            SVProgressHUD.dismiss()
+            self.errorServer(content: $0)
+        }
         
     }
     

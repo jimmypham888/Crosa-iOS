@@ -450,7 +450,6 @@
                                                                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             </state>
                                                                             <connections>
-                                                                                <action selector="didTapMakeSchedule:" destination="-1" eventType="touchUpInside" id="712-PV-Jgz"/>
                                                                                 <action selector="didTapSendRequestTest:" destination="-1" eventType="touchUpInside" id="lPt-dg-63Z"/>
                                                                             </connections>
                                                                         </button>

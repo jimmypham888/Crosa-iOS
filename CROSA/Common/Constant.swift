@@ -48,6 +48,8 @@ enum API {
     static let createSBLink = "contact/receive_sbtopica"
     static let getInfo = "contact/info"
     static let getMark = "contact/mark"
+    static let bookAcc = "bookAccount"
+    static let getAccountNativeTest = "getAccountNativeTest"
 }
 
 let ACCESS_TOKEN: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InN0cmluZ2VlLWFwaTt2PTEifQ.eyJqdGkiOiJTS04yUGZBOFBKNnNucXJwMlRzVnV2ZHo0T2N4NDRiMzRPLTE1Mjg1NDEyNTQiLCJpc3MiOiJTS04yUGZBOFBKNnNucXJwMlRzVnV2ZHo0T2N4NDRiMzRPIiwiZXhwIjoxNTMyMTQxMjU0LCJ1c2VySWQiOiJqaW1teSIsInJlc3RfYXBpIjp0cnVlLCJpYXQiOjE1Mjg1NDEyNTR9.SHCj_EVHrNFktlBlMai35JtX8IAxHfwKqw3l7HZ_6mo"
