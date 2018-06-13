@@ -96,4 +96,94 @@ class Contact: ImmutableMappable {
                 }
         }
     }
+    
+    func makeSchedule(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, dateInterview:String, hourID:Int, hourHalf:Int, teacherType:Int, note:String, studentId:Int, levelTester:Int,
+                      success: @escaping (JSON) -> Void,
+                      failure: @escaping (String) -> Void) {
+        CRMTesterAPI.makeSchedule(phoneDefault: phoneDefault, studentFullname: studentFullname, isVip: isVip, tvtsName: tvtsName, dateInterview: dateInterview, hourID: hourID, hourHalf: hourHalf, teacherType: teacherType, note: note, studentId: studentId, levelTester: levelTester)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+    }
+    
+     func getInfoCRM(phone: String,
+                     success: @escaping (JSON) -> Void,
+                     failure: @escaping (String) -> Void) {
+        CRMTesterAPI.getInfo(phone: phone)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+    
+    }
+    
+    func getMarkCRM(phone: String,
+                    success: @escaping (JSON) -> Void,
+                    failure: @escaping (String) -> Void) {
+        CRMTesterAPI.getMark(phone: phone)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+        
+    }
+    
+    func cancelSchedule(phone: String,
+                    success: @escaping (JSON) -> Void,
+                    failure: @escaping (String) -> Void) {
+        CRMTesterAPI.cancelSchedule(phone: phone)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+        
+    }
+    
+    func getAutoSB(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, tuitionTypeId:Int, studentId:Int, typeSB:Int,
+                      success: @escaping (JSON) -> Void,
+                      failure: @escaping (String) -> Void) {
+        CRMTesterAPI.getAutoSB(phoneDefault: phoneDefault, studentFullname: studentFullname, isVip: isVip, tvtsName: tvtsName, tuitionTypeId: tuitionTypeId, studentId: studentId, typeSB: typeSB)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+    }
+    
+
 }

@@ -86,6 +86,43 @@ class AbstractAPI {
         return task
     }
     
+    class func createCRMJSONTask(_ url: String,
+                              method: HTTPMethod = .post,
+                              parameters: Parameters? = nil,
+                              encoding: ParameterEncoding = JSONEncoding.default,
+                              headers: HTTPHeaders = createHeadersCRM()) -> AlamofireJsonTask {
+        let task = AlamofireJsonTask { progress, fulfill, reject, configure in
+            
+            log?.debug("====request: \(method.rawValue) \(url) \nheaders: \n\(createHeadersCRM()) \nparams: \n\(parameters ?? [:])")
+            
+            let request = Alamofire
+                .request("http://45.124.95.15/api/" + url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+            
+            request
+                .downloadProgress(queue: DispatchQueue.global(qos: .utility), closure: { progress($0) })
+                .validate()
+                .responseJSON(completionHandler: { (response) in
+                    if let value = response.value {
+                        log?.debug("Response OK \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.response!)")
+                        fulfill(JSON(value))
+                    } else {
+                        if let data = response.data {
+                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)\njson: \n\(String(describing: try? JSON(data: data)))")
+                            let statusCode = response.response?.statusCode ?? 999
+                            reject((statusCode: statusCode, body: data))
+                        } else {
+                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)")
+                            reject((statusCode: 1999, body: Data()))
+                        }
+                    }
+                })
+            
+            configRequestTask(configure, request: request)
+        }
+        
+        return task
+    }
+    
     class func createJSONTask(_ url: String,
                               method: HTTPMethod = .post,
                               data: Data,
@@ -312,6 +349,45 @@ extension AbstractAPI {
         return task
         
     }
+    
+    
+//    class func createModelArrayTaskCRM<T: ImmutableMappable>(_ url: String,
+//                                                          method: HTTPMethod = .post,
+//                                                          parameters: Parameters? = nil,
+//                                                          encoding: ParameterEncoding = JSONEncoding.default,
+//                                                          headers: HTTPHeaders = createHeadersCRM(),
+//                                                          keyPath: String? = "data") -> AlamofireImmutableModelArrayTask<T>.T {
+//        let task = AlamofireImmutableModelArrayTask<T>.T { progress, fulfill, reject, configure in
+//            log?.debug("====request: \(method.rawValue) \(url) \nheaders: \n\(createHeadersCRM()) \nparams: \n\(parameters ?? [:])")
+//
+//            let request = Alamofire.request("http://45.124.95.15/api/" + url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+//
+//            log?.debug("====Request: \(request)")
+//
+//            request
+//                .downloadProgress(queue: DispatchQueue.global(qos: .utility), closure: { progress($0) })
+//                .validate()
+//                .responseArray(keyPath: keyPath, completionHandler: { (response: DataResponse<[T]>) in
+//                    if let value = response.value {
+//                        fulfill(value)
+//
+//                    } else {
+//                        if let data = response.data {
+//                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)\njson: \n\(String(describing: try? JSON(data: data)))")
+//                            let statusCode = response.response?.statusCode ?? 999
+//                            reject((statusCode: statusCode, body: data))
+//                        } else {
+//                            log?.debug("Response failed \(response.request?.url?.absoluteString ?? "")\nresponse: \n\(response.error!)")
+//                            reject((statusCode: 1999, body: Data()))
+//                        }
+//                    }
+//                })
+//            configRequestTask(configure, request: request)
+//        }
+//
+//        return task
+//
+//    }
 }
 
 extension AbstractAPI {
@@ -328,6 +404,19 @@ extension AbstractAPI {
 //        if Account.default.isRegistered {
 //            headers["access_token"] = Account.default.accessToken!
 //        }
+        
+        return headers
+    }
+    
+    private class func createHeadersCRM(addHeaders: HTTPHeaders? = nil) -> HTTPHeaders {
+        var headers = addHeaders ?? HTTPHeaders()
+        headers["key"] = "dHV5ZW5wdjJ0b3BpY2FAdG9waWNhQDEyMy5lZHUu"
+        headers["content-type"] = "application/json"
+        headers["accept"] = "application/json"
+        headers["authorization"] = "Basic dHV5ZW5wdjI6dG9waWNhLnR1eWVucHYy"
+        //        if Account.default.isRegistered {
+        //            headers["access_token"] = Account.default.accessToken!
+        //        }
         
         return headers
     }

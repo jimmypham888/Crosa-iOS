@@ -25,6 +25,7 @@ class HistoryCall: ImmutableMappable {
         linkDownRecord = try map.value("link_down_record")
         call_schedule = try? map.value("call_schedule")
         comment = try? map.value("comment")
-        current_level = try? map.value("current_level")
+        current_level = try? map.value("call_level")
+        print("LEVELLLLLL \(current_level)")
     }
 }

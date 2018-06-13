@@ -55,7 +55,7 @@ class BaseViewController: UIViewController {
             let dateStringArr = dateString.components(separatedBy: " ")
             let day = dateStringArr[0]
             let dateArr = day.components(separatedBy: "-")
-            stringDate = dateArr[2] + "/" + dateArr[1]
+            stringDate = dateArr[2] + "/" + dateArr[1] + "/" + dateArr[0]
         }
         return stringDate
         
