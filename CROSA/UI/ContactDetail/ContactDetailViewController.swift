@@ -114,6 +114,7 @@ class ContactDetailViewController: BaseViewController {
     @IBOutlet weak var noteTv: UITextView!
     
     
+    @IBOutlet weak var getNavtiveAcc: UIButton!
     @IBOutlet weak var teacherTestLbl: UILabel!
     @IBOutlet weak var noteTestLbl: UILabel!
     
@@ -174,9 +175,9 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapBack(_ sender: UIButton) {
-        if (isCalled == false){
+//        if (isCalled == false){
             navigationController?.popViewController(animated: true)
-        }
+//        }
     }
     
     private var isCalling: Bool = false {
@@ -199,11 +200,9 @@ class ContactDetailViewController: BaseViewController {
         pickerViewTimeSchedule = UIPickerView(frame: CGRect(x: 0, y: 150, width: 250, height: 150))
         datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: 250, height: 150))
         updateView()
-//        print("date time and hour id \(emptyDictionary[0]["time"]?.description)")
-        
         historyCalls = []
-        
-        
+        updateTable()
+        isCalled = false
         
         let titleTextAttributesNormal = [NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         segmentedControl.setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
@@ -218,12 +217,26 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateTable()
-        isCalled = false
+//        updateTable()
+//        isCalled = false
     }
     
     func updateTable() {
         SVProgressHUD.show()
+        
+        contact.getNative(id_contact: contact.id.description, success: { (json) in
+            print(json)
+            if ((Int(json["status"].description)! == 1)){
+                self.teacherTestLbl.text = json["data"].arrayValue[0]["native_test_account"].description
+                self.noteTestLbl.text = json["data"].arrayValue[0]["password"].description
+                self.getNavtiveAcc.isHidden = true
+            }
+//            self.teacherTestLbl.text = json["data"].arrayValue[0]["native_test_account"].description
+//            self.noteTestLbl.text = json["data"].arrayValue[0]["password"].description
+        }) {
+            SVProgressHUD.dismiss()
+            self.errorServer(content: $0)
+        }
         
         contact.getMarkCRM(phone: String(contact.phone.dropFirst(2)), success: { (json) in
             if((Int(json["status"].description)! != 1)){
@@ -308,7 +321,7 @@ class ContactDetailViewController: BaseViewController {
         }
         
         SVProgressHUD.show()
-        contact.makeSchedule(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.name, dateInterview: scheduleTest, hourID: hourID!, hourHalf: halfHourID!, teacherType: 2, note: noteTv.text, studentId: contact.id, levelTester: 0, success: { (json) in
+        contact.makeSchedule(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, dateInterview: scheduleTest, hourID: hourID!, hourHalf: halfHourID!, teacherType: 2, note: noteTv.text, studentId: contact.id, levelTester: 0, success: { (json) in
             SVProgressHUD.dismiss()
             print(json)
             if (json["msg"].description == "Schedule Success!"){
@@ -442,7 +455,7 @@ class ContactDetailViewController: BaseViewController {
         }
         
         SVProgressHUD.show()
-        contact.getAutoSB(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.name, tuitionTypeId: 28, studentId: contact.id, typeSB: sbType,  success: { (json) in
+        contact.getAutoSB(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, tuitionTypeId: 28, studentId: contact.id, typeSB: sbType,  success: { (json) in
             SVProgressHUD.dismiss()
             print(json)
             self.downloadLink = json["data"]["linkSB"].description
@@ -518,7 +531,7 @@ class ContactDetailViewController: BaseViewController {
             let hour = Int(timeArr[0].description)! + 7
             let callScheduleTxt = dateStringArr[0] + " " + String(hour) + ":" + timeArr[1] + ":" + timeArr[2]
             self.callScheduleLbl.text = callScheduleTxt
-            print("select call schedule \(self.datePicker.date.description)")
+//            print("select call schedule \(self.datePicker.date.description)")
             self.view.endEditing(true)
 //            print("select call schedule \(self.callScheduleLbl.text)")
         }))
@@ -593,7 +606,9 @@ class ContactDetailViewController: BaseViewController {
             self.errorServer(content: $0)
         }
         
-    }
+    }else{
+            errorServer(content: "Hãy thực hiện cuộc gọi trước khi update")
+        }
     }
     
     @IBAction func didTapMakeSchedule(_ sender: UIButton) {
@@ -612,8 +627,7 @@ class ContactDetailViewController: BaseViewController {
             print(json)
             self.teacherTestLbl.text = json["data"].arrayValue[0]["native_test_account"].description
             self.noteTestLbl.text = json["data"].arrayValue[0]["password"].description
-//            self.successServer(content: "Huỷ lịch thành công")
-//            self.updateTable()
+            self.getNavtiveAcc.isHidden = true
         }) {
             SVProgressHUD.dismiss()
             self.errorServer(content: $0)
@@ -644,7 +658,7 @@ extension ContactDetailViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(type: RecordCell.self, for: indexPath)
         let historyCall = historyCalls[indexPath.row]
         cell.updateWith(historyCall: historyCall, index: indexPath.row + 1){
-            print("tap at index ",indexPath.row)
+//            print("tap at index ",indexPath.row)
         }
         return cell
     }

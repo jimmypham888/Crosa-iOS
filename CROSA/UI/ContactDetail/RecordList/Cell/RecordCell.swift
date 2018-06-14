@@ -37,6 +37,7 @@ class RecordCell: BaseTableViewCell {
         }
         if (historyCall.current_level != nil){
             levelLbl.text = "L\(historyCall.current_level?.description ?? "")"
+            
         }
         
         didTapPlay = action

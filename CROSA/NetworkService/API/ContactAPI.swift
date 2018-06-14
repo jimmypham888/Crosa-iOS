@@ -54,7 +54,7 @@ class ContactAPI: AbstractAPI {
             "id": id,
             "name": name,
             "email": email,
-            "current_level": level,
+            "call_level": level,
             "call_id": call_id,
             "call_schedule": callBackTime,
             "comment": comment,
