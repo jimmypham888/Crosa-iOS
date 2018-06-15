@@ -44,8 +44,8 @@ class Contact: ImmutableMappable {
             .failure { _ in }
     }
     
-    static func getPending(id: String, level: String, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
-        ContactAPI.getPending(id: id, level: level)
+    static func getPending(id: String, call_schedule: String, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
+        ContactAPI.getPending(id: id, call_schedule: call_schedule)
             .success { success($0) }
             .failure { _ in }
     }
@@ -84,6 +84,23 @@ class Contact: ImmutableMappable {
                        success: @escaping (JSON) -> Void,
                        failure: @escaping (String) -> Void) {
         ContactAPI.updateFull(id: id, name: name, email: email, level: level, call_id: call_id, callBackTime: callBackTime, comment: comment)
+            .success { json in success(json) }
+            .failure { (error, _) in
+                guard let error = error else {
+                    failure("")
+                    return
+                }
+                
+                if let jsonError = try? JSON(data: error.body) {
+                    failure(jsonError["message"].stringValue)
+                }
+        }
+    }
+    
+    func updateCallNoCallId(id: String, name: String, email: String, level:String, callBackTime: String, comment: String,
+                    success: @escaping (JSON) -> Void,
+                    failure: @escaping (String) -> Void) {
+        ContactAPI.updateFullNoCallID(id: id, name: name, email: email, level: level, callBackTime: callBackTime, comment: comment)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {

@@ -221,8 +221,8 @@
                                                         <constraint firstAttribute="height" constant="28" id="iS8-gd-f69"/>
                                                     </constraints>
                                                     <segments>
-                                                        <segment title="Thông tin L3 - L6"/>
-                                                        <segment title="Thông tin L7 - L8"/>
+                                                        <segment title="Lịch kiểm tra"/>
+                                                        <segment title="Thông tin contact"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.86666666670000003" green="0.56078431370000004" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>

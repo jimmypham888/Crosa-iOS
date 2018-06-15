@@ -17,10 +17,10 @@ class ContactAPI: AbstractAPI {
         return createModelArrayTask(API.listContact, parameters: params)
     }
     
-    static func getPending(id: String, level: String) -> AlamofireImmutableModelArrayTask<Contact>.T {
+    static func getPending(id: String, call_schedule: String) -> AlamofireImmutableModelArrayTask<Contact>.T {
         let params: Parameters = [
             "id_user_tvts": id,
-            "current_level": level
+            "last_call_schedule": call_schedule
         ]
         return createModelArrayTask(API.pendingContact, parameters: params)
     }
@@ -50,15 +50,29 @@ class ContactAPI: AbstractAPI {
     }
     
     static func updateFull(id: String, name: String, email:String, level:String, call_id:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
-        let params: Parameters = [
-            "id": id,
-            "name": name,
-            "email": email,
-            "call_level": level,
-            "call_id": call_id,
-            "call_schedule": callBackTime,
-            "comment": comment,
-        ]
-        return createJSONTask(API.updateHistoryCall, parameters: params)
+            let params: Parameters = [
+                "id": id,
+                "name": name,
+                "email": email,
+                "call_level": level,
+                "call_id": call_id,
+                "call_schedule": callBackTime,
+                "comment": comment,
+                ]
+            return createJSONTask(API.updateHistoryCall, parameters: params)
+    }
+    
+    static func updateFullNoCallID(id: String, name: String, email:String, level:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
+
+            let params: Parameters = [
+                "id": id,
+                "name": name,
+                "email": email,
+                "current_level": level,
+                "last_call_schedule": callBackTime,
+                "last_comment": comment,
+                ]
+            return createJSONTask(API.updateContact, parameters: params)
+        
     }
 }

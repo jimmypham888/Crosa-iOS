@@ -101,7 +101,12 @@ class ContactViewController: BaseViewController {
     private func loadContact() {
         SVProgressHUD.show()
         if (type == 0){
-            Contact.getPending(id: contactId.description, level: "8", success: { (contacts) in
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let result = formatter.string(from: date)
+            print("today \(result)")
+            Contact.getPending(id: contactId.description, call_schedule: result, success: { (contacts) in
                 self.getDataToTable(contacts: contacts)
                 self.viewTitle.text = "Danh sách phải gọi"
                 

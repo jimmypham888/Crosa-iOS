@@ -65,7 +65,7 @@ class ContactDetailViewController: BaseViewController {
     var teacherType: Int?
     var timePickertype: Int!
     var callID: String!
-    var isCalled: Bool!
+ 
     var canDownload: Bool!
     var downloadLink: String?
     var pickerIndex: Int = 0
@@ -170,14 +170,14 @@ class ContactDetailViewController: BaseViewController {
             self.callState.text = "Kết thúc cuộc gọi"
             self.isCalling = false
             self.callID = StringeeManager.shared.callID
-            self.isCalled = true
+         
         }
     }
     
     @IBAction func didTapBack(_ sender: UIButton) {
-//        if (isCalled == false){
+
             navigationController?.popViewController(animated: true)
-//        }
+
     }
     
     private var isCalling: Bool = false {
@@ -188,7 +188,7 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        callID = ""
         self.setEndEditing()
         teacherLbl.text = "VN"
         SBLink.isEnabled = false
@@ -202,7 +202,7 @@ class ContactDetailViewController: BaseViewController {
         updateView()
         historyCalls = []
         updateTable()
-        isCalled = false
+
         
         let titleTextAttributesNormal = [NSAttributedStringKey.foregroundColor: UIColor.lightGray]
         segmentedControl.setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
@@ -217,8 +217,6 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        updateTable()
-//        isCalled = false
     }
     
     func updateTable() {
@@ -323,8 +321,8 @@ class ContactDetailViewController: BaseViewController {
         SVProgressHUD.show()
         contact.makeSchedule(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, dateInterview: scheduleTest, hourID: hourID!, hourHalf: halfHourID!, teacherType: 2, note: noteTv.text, studentId: contact.id, levelTester: 0, success: { (json) in
             SVProgressHUD.dismiss()
-            print(json)
-            if (json["msg"].description == "Schedule Success!"){
+            print("makeSchedule \(json)")
+            if (json["msg"].description.contains("Schedule Success") ){
                 self.successServer(content: "Đặt lịch thành công")
 //                self.setSchedule.setTitle("Huỷ", for: .normal)
                 self.updateTable()
@@ -405,6 +403,7 @@ class ContactDetailViewController: BaseViewController {
     @IBAction func datePicker(_ sender: UIButton) {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250,height: 300)
+        datePicker.frame = CGRect(x: 0, y: 0, width: 250, height: 150)
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.locale = Locale(identifier: "vi_VN")
         pickerViewTimeSchedule.delegate = self
@@ -575,7 +574,6 @@ class ContactDetailViewController: BaseViewController {
     }
     
     @IBAction func didTapUpdateCall(_ sender: UIButton) {
-        if(isCalled == true){
         guard let contactName = nameTf.text, contactName != "" else {
             SVProgressHUD.showError(withStatus: "Tên không được để trống!")
             return
@@ -590,24 +588,34 @@ class ContactDetailViewController: BaseViewController {
             SVProgressHUD.showError(withStatus: "Trạng thái không được để trống!")
             return
         }
-        
+        if(callScheduleLbl.text == "--"){callScheduleLbl.text = ""}
         SVProgressHUD.show()
+        if(callID != ""){
             contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text,
-                              success: { (json) in
+                               success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)
                                 if(Int(json["status"].description) == 1){
-                                   self.successServer(content: "Cập nhật thành công")
+                                    self.successServer(content: "Cập nhật thành công")
                                     self.updateTable()
-                                    self.isCalled = false
                                 }
-        }) {
-            SVProgressHUD.dismiss()
-            self.errorServer(content: $0)
-        }
-        
-    }else{
-            errorServer(content: "Hãy thực hiện cuộc gọi trước khi update")
+            }) {
+                SVProgressHUD.dismiss()
+                self.errorServer(content: $0)
+            }
+        }else {
+            contact.updateCallNoCallId(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), callBackTime: callScheduleLbl.text!, comment: contentTv.text,
+                               success: { (json) in
+                                SVProgressHUD.dismiss()
+                                print(json)
+                                if(Int(json["status"].description) == 1){
+                                    self.successServer(content: "Cập nhật thành công")
+//                                    self.updateTable()
+                                }
+            }) {
+                SVProgressHUD.dismiss()
+                self.errorServer(content: $0)
+            }
         }
     }
     
