@@ -13,6 +13,7 @@ class HistoryCall: ImmutableMappable {
     let callId: String
     let mobilePhone: String
     let startTime: String
+    let endTime: String
     let linkDownRecord: String
     let call_schedule: String?
     let comment: String?
@@ -20,8 +21,9 @@ class HistoryCall: ImmutableMappable {
     
     required init(map: Map) throws {
         callId = try map.value("call_id")
-        mobilePhone = try map.value("mobile_phone")
+        mobilePhone = try map.value("phone")
         startTime = try map.value("start_time")
+        endTime = try map.value("end_time")
         linkDownRecord = try map.value("link_down_record")
         call_schedule = try? map.value("call_schedule")
         comment = try? map.value("comment")

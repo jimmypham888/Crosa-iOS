@@ -34,7 +34,7 @@ class CRMTesterAPI: AbstractAPI {
         return createCRMJSONTask(API.getInfo, parameters: params)
     }
     
-    static func getAutoSB(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, tuitionTypeId:Int, studentId:Int, typeSB:Int) -> AlamofireJsonTask {
+    static func getAutoSB(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, tuitionTypeId:Int, studentId:Int, typeSB:Int, vocabulary:Int, grammar:Int, write:Int, listen:Int) -> AlamofireJsonTask {
         let params: Parameters = [
             "phoneDefault": phoneDefault,
             "studentFullname": studentFullname,
@@ -42,7 +42,11 @@ class CRMTesterAPI: AbstractAPI {
             "isVip": isVip,
             "typeSB": typeSB,
             "studentId": studentId,
-            "tuitionTypeId": tuitionTypeId
+            "tuitionTypeId": tuitionTypeId,
+            "vocabulary": vocabulary,
+            "grammar": grammar,
+            "write": write,
+            "listen": listen,
         ]
         return createCRMJSONTask(API.createSBLink, parameters: params)
     }

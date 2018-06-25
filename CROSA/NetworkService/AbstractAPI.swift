@@ -96,7 +96,8 @@ class AbstractAPI {
             log?.debug("====request: \(method.rawValue) \(url) \nheaders: \n\(createHeadersCRM()) \nparams: \n\(parameters ?? [:])")
             
             let request = Alamofire
-                .request("http://45.124.95.15/api/" + url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+                .request("http://crmtester.topicanative.edu.vn/api/" + url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+//            .request("http://45.124.95.15/api/" + url, method: method, parameters: parameters, encoding: encoding, headers: headers)
             
             request
                 .downloadProgress(queue: DispatchQueue.global(qos: .utility), closure: { progress($0) })
@@ -410,10 +411,14 @@ extension AbstractAPI {
     
     private class func createHeadersCRM(addHeaders: HTTPHeaders? = nil) -> HTTPHeaders {
         var headers = addHeaders ?? HTTPHeaders()
-        headers["key"] = "dHV5ZW5wdjJ0b3BpY2FAdG9waWNhQDEyMy5lZHUu"
-        headers["content-type"] = "application/json"
-        headers["accept"] = "application/json"
-        headers["authorization"] = "Basic dHV5ZW5wdjI6dG9waWNhLnR1eWVucHYy"
+        headers["key"] = "uRBl8YeF2v06NlxNc0vPQ6xyx4lkWQENWuCmvCjA"
+//        test key dHV5ZW5wdjJ0b3BpY2FAdG9waWNhQDEyMy5lZHUu
+//        real key uRBl8YeF2v06NlxNc0vPQ6xyx4lkWQENWuCmvCjA
+        headers["Content-Type"] = "application/json"
+//        headers["accept"] = "application/json"
+        headers["authorization"] = "Basic dHV5ZW5wdjI6VHV5ZW5QVjIkQCFMb2Nr"
+//      real key  headers["authorization"] = "Basic dHV5ZW5wdjI6VHV5ZW5QVjIkQCFMb2Nr"
+//      test key  Basic dHV5ZW5wdjI6dG9waWNhLnR1eWVucHYy
         //        if Account.default.isRegistered {
         //            headers["access_token"] = Account.default.accessToken!
         //        }

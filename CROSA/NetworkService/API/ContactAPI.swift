@@ -20,7 +20,7 @@ class ContactAPI: AbstractAPI {
     static func getPending(id: String, call_schedule: String) -> AlamofireImmutableModelArrayTask<Contact>.T {
         let params: Parameters = [
             "id_user_tvts": id,
-            "last_call_schedule": call_schedule
+            "call_schedule": call_schedule
         ]
         return createModelArrayTask(API.pendingContact, parameters: params)
     }
@@ -34,22 +34,23 @@ class ContactAPI: AbstractAPI {
     
     static func get(phoneNumber: String) -> AlamofireImmutableModelArrayTask<HistoryCall>.T {
         let params: Parameters = [
-            "mobile_phone": phoneNumber
+            "phone": phoneNumber
         ]
         return createModelArrayTask(API.getAllHistoryCall, parameters: params)
         
     }
     
-    static func update(id: String, name: String, email:String) -> AlamofireJsonTask {
+    static func update(id: String, name: String, email:String, phone:String) -> AlamofireJsonTask {
         let params: Parameters = [
             "id": id,
             "name": name,
-            "email": email
+            "email": email,
+            "phone": phone
         ]
         return createJSONTask(API.updateContact, parameters: params)
     }
     
-    static func updateFull(id: String, name: String, email:String, level:String, call_id:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
+    static func updateFull(id: String, name: String, email:String, level:String, call_id:String, callBackTime: String, comment:String, phone:String) -> AlamofireJsonTask {
             let params: Parameters = [
                 "id": id,
                 "name": name,
@@ -58,19 +59,19 @@ class ContactAPI: AbstractAPI {
                 "call_id": call_id,
                 "call_schedule": callBackTime,
                 "comment": comment,
+                "phone": phone
                 ]
             return createJSONTask(API.updateHistoryCall, parameters: params)
     }
     
-    static func updateFullNoCallID(id: String, name: String, email:String, level:String, callBackTime: String, comment:String) -> AlamofireJsonTask {
+    static func updateFullNoCallID(id: String, name: String, email:String, level:String, callBackTime: String, comment:String, phone:String) -> AlamofireJsonTask {
 
             let params: Parameters = [
                 "id": id,
                 "name": name,
                 "email": email,
                 "current_level": level,
-                "last_call_schedule": callBackTime,
-                "last_comment": comment,
+                "phone": phone
                 ]
             return createJSONTask(API.updateContact, parameters: params)
         

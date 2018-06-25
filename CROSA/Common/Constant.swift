@@ -43,6 +43,7 @@ enum API {
     static let getAllHistoryCall = "getAllHistoryCall"
     static let updateContact = "updateContact"
     static let updateHistoryCall = "updateHistoryCall"
+    
     static let makeSchedule = "contact/add"
     static let cancelSchedule = "contact/cancel_schedule"
     static let createSBLink = "contact/receive_sbtopica"

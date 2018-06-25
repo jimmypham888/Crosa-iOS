@@ -73,15 +73,22 @@ class ContactDetailViewController: BaseViewController {
     var pickerLevel: Int = 0
     var sbType: Int?
     
+    //Mark
+    var vocabulary:Int?
+    var grammar:Int?
+    var write:Int?
+    var listen:Int?
+    
     private var crmTesterInfo: CRMTester!
     private var historyCalls: [HistoryCall]!
     @IBOutlet weak var wrapperView: UIView!
     
-    private var contact: Contact {
-        didSet {
-            updateView()
-        }
-    }
+    private var contact: Contact
+//    {
+//        didSet {
+//            updateView()
+//        }
+//    }
     
     @IBOutlet weak var callState: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -188,30 +195,13 @@ class ContactDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        callID = ""
         self.setEndEditing()
-        teacherLbl.text = "VN"
-        SBLink.isEnabled = false
         remakeWrapperView(wrapperView)
-        containerView.isHidden = false
-        containerView2.isHidden = true
-        pickerViewSB = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
-        pickerViewLevel = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
-        pickerViewTimeSchedule = UIPickerView(frame: CGRect(x: 0, y: 150, width: 250, height: 150))
-        datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: 250, height: 150))
         updateView()
-        historyCalls = []
         updateTable()
-
-        
-        let titleTextAttributesNormal = [NSAttributedStringKey.foregroundColor: UIColor.lightGray]
-        segmentedControl.setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
-        
-        tableViewHistory.dataSource = self
-        tableViewHistory.delegate = self
-        
-        tableViewHistory.registerCell(type: RecordCell.self)
-        tableViewHistory.separatorStyle = .none
+    }
+    
+    func initView(){
         
     }
     
@@ -236,18 +226,18 @@ class ContactDetailViewController: BaseViewController {
             self.errorServer(content: $0)
         }
         
-        contact.getMarkCRM(phone: String(contact.phone.dropFirst(2)), success: { (json) in
-            if((Int(json["status"].description)! != 1)){
-                if (json["data"]["markInfo"] != JSON.null){
-                    self.dateInterviewScoreLbl.text = json["data"]["dateInterview"].description
-                    self.scoreIntervireLbl.text = json["data"]["markInfo"]["total_point"].description
-                    self.levelInterviewLbl.text = json["data"]["markInfo"]["level"].description
-                }
-            }
-        }) {
-            SVProgressHUD.dismiss()
-            self.errorServer(content: $0)
-        }
+//        contact.getMarkCRM(phone: String(contact.phone.dropFirst(2)), success: { (json) in
+//            if((Int(json["status"].description)! != 1)){
+//                if (json["data"]["markInfo"] != JSON.null){
+//                    self.dateInterviewScoreLbl.text = json["data"]["dateInterview"].description
+//                    self.scoreIntervireLbl.text = json["data"]["markInfo"]["total_point"].description
+//                    self.levelInterviewLbl.text = json["data"]["markInfo"]["level"].description
+//                }
+//            }
+//        }) {
+//            SVProgressHUD.dismiss()
+//            self.errorServer(content: $0)
+//        }
    
         contact.getInfoCRM(phone: String(contact.phone.dropFirst(2)), success: { (json) in
             
@@ -268,6 +258,26 @@ class ContactDetailViewController: BaseViewController {
                     if (json["data"]["historyStatusChange"]["note"] != JSON.null){
                         self.noteTv.text = json["data"]["historyStatusChange"]["note"].description
                     }
+                    
+                    
+                    
+                    
+                    
+//                    self.dateTestScoreLbl.text = self.dateLbl.text
+//                    self.scoreLbl.text = "600"
+//                    self.levelLbl.text = "Intermediate 200"
+//
+//                    self.dateInterviewScoreLbl.text = self.dateLbl.text
+//                    self.levelInterviewLbl.text = "Basic 100"
+//                    self.scoreIntervireLbl.text = "0"
+//
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     self.interviewDatePicker.isEnabled = false
                     self.canDownload = true
                 }else if (Int(json["status"].description)! == 0 && Int(json["data"]["interviewStatus"].description)! == 5) {
@@ -304,10 +314,30 @@ class ContactDetailViewController: BaseViewController {
     }
     
     private func updateView() {
+        callID = ""
+        teacherLbl.text = "VN"
         
+        SBLink.isEnabled = false
         nameTf.text = contact.name
         phoneTf.text = contact.phone
+        phoneTf.keyboardType = .numberPad
         emailTf.text = contact.email
+        
+        containerView.isHidden = false
+        containerView2.isHidden = true
+        pickerViewSB = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        pickerViewLevel = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        pickerViewTimeSchedule = UIPickerView(frame: CGRect(x: 0, y: 150, width: 250, height: 150))
+        datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: 250, height: 150))
+        historyCalls = []
+        let titleTextAttributesNormal = [NSAttributedStringKey.foregroundColor: UIColor.lightGray]
+        segmentedControl.setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
+        
+        tableViewHistory.dataSource = self
+        tableViewHistory.delegate = self
+        
+        tableViewHistory.registerCell(type: RecordCell.self)
+        tableViewHistory.separatorStyle = .none
         
     }
 
@@ -318,8 +348,13 @@ class ContactDetailViewController: BaseViewController {
             return
         }
         
+        guard let studentId = contact.studentId, studentId != "" else {
+            SVProgressHUD.showError(withStatus: "Có lỗi xay ra!")
+            return
+        }
+        
         SVProgressHUD.show()
-        contact.makeSchedule(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, dateInterview: scheduleTest, hourID: hourID!, hourHalf: halfHourID!, teacherType: 2, note: noteTv.text, studentId: contact.id, levelTester: 0, success: { (json) in
+        contact.makeSchedule(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, dateInterview: scheduleTest, hourID: hourID!, hourHalf: halfHourID!, teacherType: 2, note: noteTv.text, studentId: Int(studentId)!, levelTester: 0, success: { (json) in
             SVProgressHUD.dismiss()
             print("makeSchedule \(json)")
             if (json["msg"].description.contains("Schedule Success") ){
@@ -372,13 +407,24 @@ class ContactDetailViewController: BaseViewController {
             return
         }
         
+        guard let phoneNumber = phoneTf.text, phoneNumber != "" else {
+            SVProgressHUD.showError(withStatus: "Số điện thoại không được để trống!")
+            return
+        }
+        
         SVProgressHUD.show()
         contact.updateContact(id: contact.id.description,
-                              name: contactName, email: contactEmail,
+                              name: contactName, email: contactEmail, phone: phoneNumber,
                               success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)
-                                self.successServer(content: "Cập nhật thành công")
+                                if(Int(json["status"].description) == 1){
+                                    self.successServer(content: "Cập nhật thành công")
+                                    self.updateTable()
+                                }else{
+                                    self.errorServer(content: "Cập nhật lỗi")
+                                }
+                                
         }) {
             SVProgressHUD.dismiss()
             self.errorServer(content: $0)
@@ -448,13 +494,34 @@ class ContactDetailViewController: BaseViewController {
     
     @IBAction func didTapOrderSB(_ sender: UIButton) {
         if (canDownload == true){
-        guard let sbType = sbType, sbType != 0 else {
-            SVProgressHUD.showError(withStatus: "Hãy chọn loại SB!")
-            return
-        }
+            guard let sbType = sbType, sbType != 0 else {
+                SVProgressHUD.showError(withStatus: "Hãy chọn loại SB!")
+                return
+            }
+            
+//            guard let vocabulary = vocabulary, vocabulary != 0 else {
+//                SVProgressHUD.showError(withStatus: "Học viên chưa có điểm!")
+//                return
+//            }
+//
+//            guard let grammar = grammar, grammar != 0 else {
+//                SVProgressHUD.showError(withStatus: "Học viên chưa có điểm!")
+//                return
+//            }
+//
+//            guard let write = write, write != 0 else {
+//                SVProgressHUD.showError(withStatus: "Học viên chưa có điểm!")
+//                return
+//            }
+//
+//            guard let listen = listen, listen != 0 else {
+//                SVProgressHUD.showError(withStatus: "Học viên chưa có điểm!")
+//                return
+//            }
         
         SVProgressHUD.show()
-        contact.getAutoSB(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, tuitionTypeId: 28, studentId: contact.id, typeSB: sbType,  success: { (json) in
+//            contact.getAutoSB(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, tuitionTypeId: 28, studentId: contact.id, typeSB: sbType, vocabulary: vocabulary, grammar: grammar, write: write, listen: listen,  success: { (json) in
+                contact.getAutoSB(phoneDefault: String(contact.phone.dropFirst(2)), studentFullname: contact.name, isVip: 0, tvtsName: AccountAuth.default.username, tuitionTypeId: 28, studentId: contact.id, typeSB: sbType, vocabulary: 150, grammar: 150, write: 150, listen: 150,  success: { (json) in
             SVProgressHUD.dismiss()
             print(json)
             self.downloadLink = json["data"]["linkSB"].description
@@ -494,8 +561,8 @@ class ContactDetailViewController: BaseViewController {
                     mailComposer.mailComposeDelegate = self
                     
                     //Set the subject and message of the email
-                    mailComposer.setSubject("Have you heard a swift?")
-                    mailComposer.setMessageBody("This is what they sound like.", isHTML: false)
+                    mailComposer.setSubject("TOPICA NATIVE - Kết quả bài test và lộ trình học tập của học viên")
+                    mailComposer.setMessageBody("Đây là SB 100 nha ahihi!!!", isHTML: false)
                     
                     if let fileData = NSData(contentsOfFile: filePath) {
                         print("File data loaded.")
@@ -588,10 +655,16 @@ class ContactDetailViewController: BaseViewController {
             SVProgressHUD.showError(withStatus: "Trạng thái không được để trống!")
             return
         }
+        
+        guard let phoneNumber = phoneTf.text, phoneNumber != "" else {
+            SVProgressHUD.showError(withStatus: "Số điện thoại không được để trống!")
+            return
+        }
+        
         if(callScheduleLbl.text == "--"){callScheduleLbl.text = ""}
         SVProgressHUD.show()
         if(callID != ""){
-            contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text,
+            contact.updateCall(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), call_id: callID, callBackTime: callScheduleLbl.text!, comment: contentTv.text, phone: phoneNumber,
                                success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)
@@ -604,7 +677,7 @@ class ContactDetailViewController: BaseViewController {
                 self.errorServer(content: $0)
             }
         }else {
-            contact.updateCallNoCallId(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), callBackTime: callScheduleLbl.text!, comment: contentTv.text,
+            contact.updateCallNoCallId(id: contact.id.description, name: contactName , email: contactEmail, level: String((level.dropFirst(1))), callBackTime: callScheduleLbl.text!, comment: contentTv.text, phone: phoneNumber,
                                success: { (json) in
                                 SVProgressHUD.dismiss()
                                 print(json)

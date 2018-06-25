@@ -30,12 +30,17 @@ class ContactTableViewCell: BaseTableViewCell {
         nameLbl.text = contact.name
         telLbl.text = contact.phone
         emaillbl.text = contact.email
-        levelLbl.text = "L\(contact.currentLevel)"
+        levelLbl.text = "L\(contact.currentLevel!)"
         if (contact.dateLastCall != nil){
             dateLbl.text = convertDate(date: contact.dateLastCall!, type: 0)
+        }else{
+            dateLbl.text = "--/--"
         }
-        
-       
+        if (contact.comment != nil){
+           statusLbl.text = contact.comment
+        }else{
+            statusLbl.text = ""
+        }
         
         self.actionHandle = actionHandle
     }

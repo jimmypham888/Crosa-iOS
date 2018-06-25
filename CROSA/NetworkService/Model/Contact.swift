@@ -17,10 +17,12 @@ class Contact: ImmutableMappable {
     let email: String
     let idUserManager: Int
     let idUserTvts: Int
-    let idStatusCall: Int
+//    let idStatusCall: Int
     let status: Int
-    let currentLevel: Int
+    let currentLevel: Int?
     let dateLastCall: String?
+    let studentId: String?
+    let comment: String?
 //    let dateLastCallDate: Date
     
     required init(map: Map) throws {
@@ -31,11 +33,13 @@ class Contact: ImmutableMappable {
         email = try map.value("email")
         idUserManager = try map.value("id_user_manager")
         idUserTvts = try map.value("id_user_tvts")
-        idStatusCall = try map.value("id_status_call")
+//        idStatusCall = try map.value("id_status_call")
         status = try map.value("status")
-        currentLevel = try map.value("current_level")
-        dateLastCall = try? map.value("last_call")
-       
+        currentLevel = try? map.value("current_level")
+        dateLastCall = try? map.value("start_time")
+        studentId = try? map.value("studentId")
+        comment = try? map.value("comment")
+//       print("level \(currentLevel)")
     }
     
     static func get(id: Int, success: @escaping ([Contact]) -> Void, failure: @escaping (String) -> Void) {
@@ -63,10 +67,10 @@ class Contact: ImmutableMappable {
             .failure { _ in }
     }
     
-    func updateContact(id: String, name: String, email: String,
+    func updateContact(id: String, name: String, email: String, phone: String,
                        success: @escaping (JSON) -> Void,
                        failure: @escaping (String) -> Void) {
-        ContactAPI.update(id: id, name: name, email: email)
+        ContactAPI.update(id: id, name: name, email: email, phone: phone)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {
@@ -80,10 +84,10 @@ class Contact: ImmutableMappable {
         }
     }
     
-    func updateCall(id: String, name: String, email: String, level:String, call_id:String, callBackTime: String, comment: String,
+    func updateCall(id: String, name: String, email: String, level:String, call_id:String, callBackTime: String, comment: String, phone:String,
                        success: @escaping (JSON) -> Void,
                        failure: @escaping (String) -> Void) {
-        ContactAPI.updateFull(id: id, name: name, email: email, level: level, call_id: call_id, callBackTime: callBackTime, comment: comment)
+        ContactAPI.updateFull(id: id, name: name, email: email, level: level, call_id: call_id, callBackTime: callBackTime, comment: comment, phone: phone)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {
@@ -97,10 +101,10 @@ class Contact: ImmutableMappable {
         }
     }
     
-    func updateCallNoCallId(id: String, name: String, email: String, level:String, callBackTime: String, comment: String,
+    func updateCallNoCallId(id: String, name: String, email: String, level:String, callBackTime: String, comment: String, phone:String,
                     success: @escaping (JSON) -> Void,
                     failure: @escaping (String) -> Void) {
-        ContactAPI.updateFullNoCallID(id: id, name: name, email: email, level: level, callBackTime: callBackTime, comment: comment)
+        ContactAPI.updateFullNoCallID(id: id, name: name, email: email, level: level, callBackTime: callBackTime, comment: comment, phone: phone)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {
@@ -185,10 +189,10 @@ class Contact: ImmutableMappable {
         
     }
     
-    func getAutoSB(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, tuitionTypeId:Int, studentId:Int, typeSB:Int,
+    func getAutoSB(phoneDefault: String, studentFullname:String, isVip:Int, tvtsName: String, tuitionTypeId:Int, studentId:Int, typeSB:Int, vocabulary:Int, grammar:Int, write:Int, listen:Int,
                       success: @escaping (JSON) -> Void,
                       failure: @escaping (String) -> Void) {
-        CRMTesterAPI.getAutoSB(phoneDefault: phoneDefault, studentFullname: studentFullname, isVip: isVip, tvtsName: tvtsName, tuitionTypeId: tuitionTypeId, studentId: studentId, typeSB: typeSB)
+        CRMTesterAPI.getAutoSB(phoneDefault: phoneDefault, studentFullname: studentFullname, isVip: isVip, tvtsName: tvtsName, tuitionTypeId: tuitionTypeId, studentId: studentId, typeSB: typeSB, vocabulary: vocabulary, grammar: grammar, write: write, listen: listen)
             .success { json in success(json) }
             .failure { (error, _) in
                 guard let error = error else {

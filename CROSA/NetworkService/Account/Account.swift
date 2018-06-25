@@ -95,7 +95,7 @@ class Account: ImmutableMappable {
     let id: Int
     let email: String
     let idRole: Int
-    let statitionDefault: String
+//    let statitionDefault: String
     
     required init(map: Map) throws {
         name = try map.value("name")
@@ -103,7 +103,7 @@ class Account: ImmutableMappable {
         id = try map.value("id")
         email = try map.value("email")
         idRole = try map.value("id_role")
-        statitionDefault = try map.value("statition_default")
+//        statitionDefault = try map.value("statition_default")
     }
     
     static func login(username: String,
